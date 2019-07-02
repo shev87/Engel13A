@@ -1,0 +1,225 @@
+##############################################################################
+#                                                                            #
+#                                                      09/Feb/2008  18:10:39 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\INDIKATE. #
+#                    c                                                       #
+#    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\INDIKATE. #
+#                    c" --cpu=m8 -ms -o "C:\Documents and                    #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Obj #
+#                    \" -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГР #
+#                    АММА ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debu #
+#                    g\List\" -lA "C:\Documents and                          #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Lis #
+#                    t\" --initializers_in_flash -z9 --cross_call_passes=3   #
+#                    --debug -DENABLE_BIT_DEFINITIONS --do_cross_call -e -I  #
+#                    "C:\Program Files\IAR Systems\Embedded Workbench 4.0    #
+#                    Evaluation\avr\INC\" -I "C:\Program Files\IAR           #
+#                    Systems\Embedded Workbench 4.0                          #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Lis #
+#                    t\INDIKATE.lst                                          #
+#    Object file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Obj #
+#                    \INDIKATE.r90                                           #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\INDIKATE.c
+      1          #include "INDIKATE.h"
+
+   \                                 In segment ABSOLUTE, at 0x34
+   \   union <unnamed> volatile __io _A_DDRC
+   \                     _A_DDRC:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x35
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS 1
+      2          
+      3          
+      4          ////////////////////////////////////
+      5          // переменные для индикации режима работы
+
+   \                                 In segment NEAR_Z, align 1, keep-with-next
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+      6          char IndikateVALUE;
+   \                     IndikateVALUE:
+   \   00000000                      DS 1
+      7          ////////////////////////////////////
+      8          /// ф установить режим индикации как будет гореть LED
+
+   \                                 In segment CODE, align 2, keep-with-next
+      9          void Set_INDIK_VAL(char VAL)
+   \                     Set_INDIK_VAL:
+     10          {
+     11            IndikateVALUE = VAL;
+   \   00000000                      REQUIRE ?Subroutine0
+   \   00000000                      ;               // Fall through to label ?Subroutine0
+
+   \                                 In segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   9300....           STS     IndikateVALUE, R16
+   \   00000004   9508               RET
+     12          }
+     13          /// ф считать текущий режим индикации
+
+   \                                 In segment CODE, align 2, keep-with-next
+     14          char Get_INDIK_VAL(void)
+   \                     Get_INDIK_VAL:
+     15          {
+     16            return IndikateVALUE;
+   \   00000000   9100....           LDS     R16, IndikateVALUE
+   \   00000004   9508               RET
+     17          }
+     18          
+     19          ////////////////////////////////////
+     20          // массив для идикации состояний контроллера
+
+   \                                 In segment NEAR_F, align 1, keep-with-next
+     21          flash char IND_ARR[9] = { 0x00, 0x01, 0x05, 0x15, 0x55, 0xFF, 0x7F, 0x5F, 0xF0 };
+   \                     IND_ARR:
+   \   00000000   01001505FF55       DB 0, 1, 5, 21, 85, 255, 127, 95, 240
+   \              5F7FF0      
+     22          //////////////////////////////////////////////////
+     23          /// функция индицирует количеством вспышек текущий режим работы
+     24          /// передаем на вход номер режима
+     25          /// если ррежим равен INIT_MOD - просто включим светодиод
+
+   \                                 In segment CODE, align 2, keep-with-next
+     26          void IndikateFN (char x)
+   \                     IndikateFN:
+     27          {
+   \   00000000   ....               RCALL   ?PROLOGUE4_L09
+     28          static char loc_val = 0, mask = 0;
+     29          char tmp;
+     30           if(mask == 0){
+   \   00000002   ....               LDI     R26, LOW((??loc_val + 1))
+   \   00000004   ....               LDI     R27, HIGH((??loc_val + 1))
+   \   00000006   911C               LD      R17, X
+   \   00000008   9711               SBIW    R27:R26, 1
+   \   0000000A   2311               TST     R17
+   \   0000000C   F469               BRNE    ??IndikateFN_0
+     31              mask = 0x80; // если прошли весь байт начнем сначала
+   \   0000000E   E810               LDI     R17, 128
+   \   00000010   9611               ADIW    R27:R26, 1
+   \   00000012   931C               ST      X, R17
+     32              tmp = IND_ARR[x];
+   \   00000014   ....               LDI     R30, LOW(IND_ARR)
+   \   00000016   ....               LDI     R31, (IND_ARR) >> 8
+   \   00000018   E010               LDI     R17, 0
+   \   0000001A   0FE0               ADD     R30, R16
+   \   0000001C   1FF1               ADC     R31, R17
+   \   0000001E   9104               LPM     R16, Z
+     33              if(loc_val != tmp) // изменили режим индикации
+   \   00000020   911E               LD      R17, -X
+   \   00000022   1710               CP      R17, R16
+   \   00000024   F009               BREQ    ??IndikateFN_0
+     34                 loc_val = tmp;
+   \   00000026   930C               ST      X, R16
+     35           }
+     36          // работа
+     37           if(loc_val & mask) // если 1 зажигаем светодиод
+   \                     ??IndikateFN_0:
+   \   00000028   9611               ADIW    R27:R26, 1
+   \   0000002A   910C               LD      R16, X
+   \   0000002C   911E               LD      R17, -X
+   \   0000002E   2310               AND     R17, R16
+   \   00000030   F011               BREQ    ??IndikateFN_1
+     38                  SET_I_BIT;
+   \   00000032   9AA9               SBI     0x15, 0x01
+   \   00000034   C001               RJMP    ??IndikateFN_2
+     39           else   CLR_I_BIT;  // если 0 тушим светодиод
+   \                     ??IndikateFN_1:
+   \   00000036   98A9               CBI     0x15, 0x01
+     40           mask >>= 1;
+   \                     ??IndikateFN_2:
+   \   00000038   9506               LSR     R16
+   \   0000003A   9611               ADIW    R27:R26, 1
+   \   0000003C   930C               ST      X, R16
+     41          }
+   \   0000003E   E0E4               LDI     R30, 4
+   \   00000040   ....               RJMP    ?EPILOGUE_B4_L09
+
+   \                                 In segment NEAR_Z, align 1, keep-with-next
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+   \                     ??loc_val:
+   \   00000000                      DS 1
+   \   00000001                      DS 1
+     42          /// процедура индикации текущего режима работы
+
+   \                                 In segment CODE, align 2, keep-with-next
+     43          void Indikate( void )
+   \                     Indikate:
+     44          {
+     45            IndikateFN(IndikateVALUE);
+   \   00000000   9100....           LDS     R16, IndikateVALUE
+   \   00000004   ....               RJMP    IndikateFN
+     46          }
+     47          
+     48          //////////////////////////////////////////////////
+     49          //// процедура индикация режим работы
+
+   \                                 In segment CODE, align 2, keep-with-next
+     50          void InitIndikate(void)
+   \                     InitIndikate:
+     51          {
+     52           LED_DIR_PORT |= (1<<LED); // настроим вывод управления LED
+   \   00000000   9AA1               SBI     0x14, 0x01
+     53           CLR_I_BIT;
+   \   00000002   98A9               CBI     0x15, 0x01
+     54           IndikateVALUE = LED_IS_OFF;
+   \   00000004   E000               LDI     R16, 0
+   \   00000006   ....               RJMP    ?Subroutine0
+     55          }
+
+   Maximum stack usage in bytes:
+
+     Function        CSTACK RSTACK
+     --------        ------ ------
+     Get_INDIK_VAL       0      2
+     Indikate            0      2
+       -> IndikateFN     0      2
+     IndikateFN          4      2
+     InitIndikate        0      2
+     Set_INDIK_VAL       0      2
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     _A_DDRC           1
+     _A_PORTC          1
+     IndikateVALUE     1
+     Set_INDIK_VAL     0
+     ?Subroutine0      6
+     Get_INDIK_VAL     6
+     IND_ARR           9
+     IndikateFN       66
+     loc_val           2
+     Indikate          6
+     InitIndikate      8
+      Others           6
+
+ 
+  2 bytes in segment ABSOLUTE
+ 92 bytes in segment CODE
+  6 bytes in segment INITTAB
+  9 bytes in segment NEAR_F
+  3 bytes in segment NEAR_Z
+ 
+ 101 bytes of CODE memory (+ 6 bytes shared)
+   3 bytes of DATA memory (+ 2 bytes shared)
+
+Errors: none
+Warnings: none

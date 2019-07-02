@@ -1,0 +1,180 @@
+BODY {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 15px; MARGIN: 0px; LINE-HEIGHT: 125%; PADDING-TOP: 30px; BACKGROUND-COLOR: #fafafa; TEXT-ALIGN: center
+}
+TD.TopCell {
+	BACKGROUND-IMAGE: url(/images/yellow.gif); BORDER-BOTTOM: #ffb200 2px solid
+}
+TABLE.ContentBox {
+	BORDER-RIGHT: #d5d5d5 1px solid; BORDER-TOP: #d5d5d5 1px solid; MARGIN: 10px; BORDER-LEFT: #d5d5d5 1px solid; LINE-HEIGHT: 125%; BORDER-BOTTOM: #d5d5d5 1px solid
+}
+TABLE.TopCellLayout {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; WIDTH: 100%; BORDER-BOTTOM: medium none
+}
+TD.TopLogoCell {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; WIDTH: 60%; PADDING-TOP: 0px; TEXT-ALIGN: left
+}
+TD.TopCircuitCell {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; WIDTH: 40%; PADDING-TOP: 0px; TEXT-ALIGN: right
+}
+TD {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0px; BORDER-TOP: medium none; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: medium none; COLOR: black; LINE-HEIGHT: 125%; PADDING-TOP: 0px; BORDER-BOTTOM: medium none; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif
+}
+H1 {
+	MARGIN-TOP: 0px; FONT-WEIGHT: bold; FONT-SIZE: 16px; MARGIN-BOTTOM: 15px
+}
+P.Distributor_CmpName {
+	MARGIN-TOP: 20px; FONT-WEIGHT: bold; MARGIN-BOTTOM: 1px
+}
+P.Distributor_CmpComment {
+	MARGIN-TOP: 0px; FONT-WEIGHT: normal; MARGIN-BOTTOM: 1px; FONT-STYLE: italic
+}
+A {
+	FONT-WEIGHT: bold; COLOR: #a0522d; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+P.Distributor_CmpName A {
+	COLOR: black
+}
+TABLE.Distributor_ItemLine {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN-BOTTOM: 1px; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none
+}
+TD.Distributor_ItemLabel {
+	PADDING-RIGHT: 5px; PADDING-BOTTOM: 1px; WIDTH: 100px
+}
+TD.Distributor_ItemValue {
+	PADDING-BOTTOM: 1px; WIDTH: 300px
+}
+P.Distributor_OffName {
+	MARGIN-TOP: 7px; MARGIN-BOTTOM: 1px; TEXT-DECORATION: underline
+}
+P.Distributor_OffAddress {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 5px
+}
+P.PreH1 {
+	MARGIN-TOP: 0px; FONT-WEIGHT: normal; FONT-SIZE: 14px; MARGIN-BOTTOM: 10px; TEXT-DECORATION: underline
+}
+TABLE.SupportNote_PropTable {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN-BOTTOM: 10px; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none
+}
+TD.SupportNote_PropLabel {
+	PADDING-RIGHT: 5px; FONT-SIZE: 11px; PADDING-BOTTOM: 4px
+}
+TD.SupportNote_PropValue {
+	FONT-SIZE: 11px; PADDING-BOTTOM: 4px
+}
+P {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 10px
+}
+.NoSpaceAfter {
+	MARGIN-BOTTOM: 0px
+}
+TABLE.DottedList {
+	MARGIN-BOTTOM: 5px
+}
+TD.DottedListDotCell {
+	PADDING-BOTTOM: 5px; WIDTH: 10px
+}
+TD.DottedListEntryCell {
+	PADDING-BOTTOM: 5px
+}
+H4 {
+	MARGIN-TOP: 20px; FONT-WEIGHT: bold; FONT-SIZE: 14px; MARGIN-BOTTOM: 15px; TEXT-DECORATION: underline
+}
+H5 {
+	MARGIN-TOP: 15px; FONT-WEIGHT: bold; FONT-SIZE: 14px; MARGIN-BOTTOM: 2px
+}
+H6 {
+	MARGIN-TOP: 15px; FONT-WEIGHT: normal; FONT-SIZE: 12px; MARGIN-BOTTOM: 5px; TEXT-DECORATION: underline
+}
+PRE.CodeExample {
+	MARGIN-TOP: 0px; FONT-SIZE: 12px; MARGIN-BOTTOM: 10px
+}
+TD.DottedListExtraSpace {
+	PADDING-BOTTOM: 0px; PADDING-TOP: 0px; HEIGHT: 10px
+}
+.Margin_ExtraText {
+	FONT-SIZE: 11px
+}
+TABLE.SupportResult_Table {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN-TOP: 5px; MARGIN-BOTTOM: 10px; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none
+}
+TD.SupportResult_Component {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; TEXT-DECORATION: underline
+}
+TD.SupportResult_Number {
+	FONT-SIZE: 10px; WIDTH: 40px
+}
+TD.SupportResult_Link {
+	PADDING-BOTTOM: 4px; WIDTH: 335px
+}
+TD.SupportResult_Date {
+	FONT-SIZE: 10px; WIDTH: 75px; FONT-STYLE: normal; TEXT-ALIGN: right
+}
+TABLE.DBtext_Table {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN-TOP: 10px; MARGIN-BOTTOM: 5px; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none
+}
+TD.DBtext_tableCell {
+	PADDING-RIGHT: 5px; PADDING-BOTTOM: 5px
+}
+TABLE {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0px; BORDER-TOP: medium none; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: medium none; PADDING-TOP: 0px; BORDER-BOTTOM: medium none
+}
+TABLE.DividerBox {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN-TOP: 15px; MARGIN-BOTTOM: 10px; BORDER-LEFT: medium none; WIDTH: 90%; BORDER-BOTTOM: medium none
+}
+TD.DividerLine {
+	WIDTH: 100%; HEIGHT: 1px; BACKGROUND-COLOR: #d5d5d5
+}
+TD.DividerText {
+	FONT-SIZE: 11px; WIDTH: 100%; PADDING-TOP: 5px
+}
+.Link_ExtraText {
+	FONT-SIZE: 11px
+}
+.Form_Button {
+	BORDER-RIGHT: #666666 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #666666 1px solid; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 12px; PADDING-BOTTOM: 3px; MARGIN: 0px; BORDER-LEFT: #666666 1px solid; COLOR: #666666; PADDING-TOP: 3px; BORDER-BOTTOM: #666666 1px solid; BACKGROUND-COLOR: #ffffdd
+}
+.Small {
+	FONT-SIZE: 11px
+}
+TABLE.JPform_Table {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN-TOP: 20px; BORDER-LEFT: medium none; WIDTH: 100%; BORDER-BOTTOM: medium none; BACKGROUND-COLOR: #d5d5d5
+}
+TD.JPform_LabelCell {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; WIDTH: 90px; PADDING-TOP: 5px; BACKGROUND-COLOR: #ffffff
+}
+TD.JPform_FieldCell {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 8px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; BACKGROUND-COLOR: #ffffff
+}
+.JPform_FieldComment {
+	FONT-SIZE: 10px; COLOR: #999999
+}
+.Big {
+	FONT-SIZE: 14px
+}
+.NormalWeight {
+	FONT-WEIGHT: normal
+}
+TD.MainCell_STANDARD {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 20px; WIDTH: 450px; PADDING-TOP: 20px; BACKGROUND-COLOR: white
+}
+TD.MainCell_WIDEMARGIN {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 20px; WIDTH: 400px; PADDING-TOP: 20px; BACKGROUND-COLOR: white
+}
+TD.MarginCell_STANDARD {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 0px; PADDING-BOTTOM: 20px; WIDTH: 130px; PADDING-TOP: 20px; BACKGROUND-COLOR: white
+}
+TD.MarginCell_WIDEMARGIN {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 0px; PADDING-BOTTOM: 20px; WIDTH: 180px; PADDING-TOP: 20px; BACKGROUND-COLOR: white
+}
+.Form_Label {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px
+}
+.Form_RequiredAsterisk {
+	FONT-WEIGHT: bold; FONT-SIZE: 18px; VERTICAL-ALIGN: -4px; COLOR: #f68622
+}
+TD.SpecialMessageCell {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 3px; FONT-WEIGHT: normal; FONT-SIZE: 12px; PADDING-BOTTOM: 3px; COLOR: white; PADDING-TOP: 1px; BACKGROUND-COLOR: #d5d5d5
+}

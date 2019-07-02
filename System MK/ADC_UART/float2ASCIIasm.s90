@@ -1,0 +1,261 @@
+        NAME float2ASCII
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "2"
+;        RTMODEL "__rt_version", "2.30"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        PUBLIC BSD_FP
+        FUNCTION BSD_FP,021203H
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 5, STACK
+
+        RSEG CODE:CODE:NOROOT(1)
+;     8 void BSD_FP(float X, char* PS)
+BSD_FP:
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 5, STACK
+        push r19            ;сохранить знак
+        push r20            ;сохранить указатель строки          
+                            ;результата (LSB)
+        push r21            ;сохранить указатель строки             
+                            ;результата (MSB)
+        st -y,r26           ;сохранить локальные 
+                            ;регистры 
+        st -y,r27
+;вычисление порядка
+        lsl r19	            ;см. IAR C float-формат
+        bst r18,7
+        bld r19,0 
+        subi r19,126       
+;добавление старшей значащей 1 к мантиссе 
+        ori r18,$80
+;очистка памяти
+        clr r22
+        clr r21
+        clr r20  
+;выделение целой части
+        sbrc r19,7      
+        rjmp int_bcd        ;если  порядок < 0, то целая 
+                            ;часть отсутствует
+        cpi r19,0           ;если  порядок = 0, то целая 
+                            ;часть отсутствует
+        breq int_bcd       
+int_shift:   
+        lsl r16
+        rol r17
+        rol r18
+        rol r20
+        rol r21
+        rol r22
+        dec r19
+        brne int_shift 
+;bcd-преобразование целой части 
+int_bcd:
+        ldi     r23, -1
+int_loop_1:
+        inc     r23
+        subi    r20, low(100000)
+        sbci    r21, byte2(100000)
+        sbci    r22, byte3(100000)
+        brsh    int_loop_1
+        subi    r20, low(-100000)
+        sbci    r21, byte2(-100000)
+        sbci    r22, byte3(-100000)
+        st      -y,r23
+        ldi     r23,-1
+int_loop_2:
+        inc     r23
+        subi    r20, low(10000)
+        sbci    r21, byte2(10000)
+        sbci    r22, byte3(10000)
+        brsh    int_loop_2
+        subi    r20, low(-10000)
+        sbci    r21, byte2(-10000)
+        sbci    r22, byte3(-10000) 
+        st      -y,r23
+        ldi     r23,-1
+int_loop_3:
+        inc     r23
+        subi    r20, low(1000)
+        sbci    r21, byte2(1000)
+        brsh    int_loop_3
+        subi    r20, low(-1000)
+        sbci    r21, byte2(-1000)
+        st     -y,r23
+        ldi     r23,-1
+int_loop_4:
+        inc     r23
+        subi    r20, 100 
+        sbci    r21, byte2(100) 
+        brsh    int_loop_4
+        subi    r20, -100 
+        sbci    r21, byte2(-100) 
+        st     -y,r23
+        ldi     r23,-1
+int_loop_5:
+        inc     r23
+        subi    r20, 10
+        brsh    int_loop_5 
+        subi    r20, -10 
+        st     -y,r23
+        st     -y,r20
+   ;
+     sbrc r19,7      
+     rjmp f_prep            ;if порядок < 0, сдвигать 
+                            ;дробную часть     
+     rjmp f_conv
+
+;сдвиг дробной части
+f_prep:     
+        neg r19 
+f_shift:
+        lsr r18
+        ror r17
+        ror r16
+        dec r19
+        brne f_shift 
+;
+;bcd-преобразование дробной части 
+f_conv: 
+       ldi r23,24
+f_conv1: 
+       lsr r18
+       ror r17
+       ror r16
+       ror r22
+       ror r21
+       ror r20
+;         
+      sbrc r22,7
+      subi r22,$30
+      sbrc r22,3
+      subi r22,$03
+      sbrc r21,7
+      subi r21,$30
+      sbrc r21,3
+      subi r21,$03
+      sbrc r20,7
+      subi r20,$30
+      sbrc r20,3
+      subi r20,$03
+;
+      dec r23
+      brne f_conv1          
+;
+;распаковка bcd-представления дробной части
+      mov r23,r22 
+      swap r23 
+      andi r23,$0f
+      st -y,r23
+      mov r23,r22
+      andi r23,$0f
+      st -y,r23 
+      mov r23,r21
+      swap r23 
+      andi r23,$0f
+      st -y,r23
+      mov r23,r21
+      andi r23,$0f
+      st -y,r23
+      mov r23,r20 
+      swap r23  
+      andi r23,$0f
+      st -y,r23
+      mov r23,r20
+      andi r23,$0f
+      st -y,r23 
+;
+;нормализация результата 
+      ldi r22,7
+      mov r26,r28
+      mov r27,r29
+      adiw r26,12 
+nor:  
+      dec r22
+      ld r23,-x
+      cpi r23,0 
+      brne  round 
+      cpi r22,1 
+      brne nor 
+;
+;округление результата  
+         
+round:
+     mov r30,r26
+     mov r31,r27
+     sbiw r30,6;---было 6 количество значащих цифр  
+     ld r23,z+ 
+     ldi r16,4
+     sub r16,r23    
+     brcc  move_str 
+    
+     ldi r16,6
+next_digit:        
+     ld r23,z     
+     inc r23
+     cpi r23,10
+     brne round_end 
+     ldi r23,0
+     st  z+,r23
+     dec r16
+     brne next_digit 
+;
+     inc r22
+     adiw r26,1
+     ldi r23,1 
+round_end:
+     st z,r23   
+; 
+;запись результата в выходную строку
+; подменяем цифры нужными нам символами из знакогенератора
+; /// 0-9 как есть, точка - 0x0A
+
+move_str: 
+    pop r31           ;загрузить адрес строки
+    pop r30 
+    adiw r26,1
+    ;
+    ldi r23,' '
+    pop r19           ;загрузить знак
+    sbrc r19,7
+    ldi r23,'-'
+    st z+,r23  
+    ;          
+    ldi r16,6
+int_digits:   
+    ld r23,-x 
+    subi r23,-$30 ; прибавляем $30
+    st z+,r23
+    dec r16
+    dec r22
+    brne int_digits   
+;
+point:
+    ldi r23,$2E;'.' ;символ точки
+    st z+,r23        
+; 
+f_digits:
+    cpi r16,0
+    breq enndd
+    ld r23,-x 
+    subi r23,-$30 ;прибавляем $30
+    st z+,r23
+    dec r16
+    rjmp f_digits  
+;              
+enndd:
+    adiw r28,12      ;восстановить стек данных
+    ld r27,y+
+    ld r26,y+
+    RET
+
+    END
+
+

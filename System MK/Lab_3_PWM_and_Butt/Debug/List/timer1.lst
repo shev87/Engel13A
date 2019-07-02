@@ -1,0 +1,151 @@
+##############################################################################
+#                                                                            #
+#                                                      10/Feb/2008  00:02:21 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\timer1.c    #
+#    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\timer1.c"   #
+#                    --cpu=m8 -ms -o "C:\Documents and                       #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Obj\" #
+#                     -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАМ #
+#                    МА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Li #
+#                    st\" -lA "C:\Documents and                              #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List\ #
+#                    " --initializers_in_flash -z9 --cross_call_passes=3     #
+#                    --debug -DENABLE_BIT_DEFINITIONS --do_cross_call -e -I  #
+#                    "C:\Program Files\IAR Systems\Embedded Workbench 4.0    #
+#                    Evaluation\avr\INC\" -I "C:\Program Files\IAR           #
+#                    Systems\Embedded Workbench 4.0                          #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List\ #
+#                    timer1.lst                                              #
+#    Object file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Obj\t #
+#                    imer1.r90                                               #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\timer1.c
+      1          #include "timer1.h"
+
+   \                                 In segment ABSOLUTE, at 0x37
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x38
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x46
+   \   union <unnamed> volatile __io _A_ICR1
+   \                     _A_ICR1:
+   \   00000000                      DS 2
+
+   \                                 In segment ABSOLUTE, at 0x4a
+   \   union <unnamed> volatile __io _A_OCR1A
+   \                     _A_OCR1A:
+   \   00000000                      DS 2
+
+   \                                 In segment ABSOLUTE, at 0x4c
+   \   union <unnamed> volatile __io _A_TCNT1
+   \                     _A_TCNT1:
+   \   00000000                      DS 2
+
+   \                                 In segment ABSOLUTE, at 0x4e
+   \   union <unnamed> volatile __io _A_TCCR1B
+   \                     _A_TCCR1B:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x4f
+   \   union <unnamed> volatile __io _A_TCCR1A
+   \                     _A_TCCR1A:
+   \   00000000                      DS 1
+      2          
+      3          //// Настройка и управлением таймером 1
+      4          /// работает в режиме FAST_PWM
+      5          /// TOP - в регистре ICR  сравнение в OCR1A
+
+   \                                 In segment CODE, align 2, keep-with-next
+      6          void Init_TimerT1(void)
+   \                     Init_TimerT1:
+      7          {
+      8            /// настрока портов
+      9            /// PB1 - управление силовым ключем
+     10             PORTB &= ~(1<<PB1);  /// выключим ключ
+   \   00000000   98C1               CBI     0x18, 0x01
+     11             DDRB |= (1<<PB1);     /// настроим направление ВЫХОД
+   \   00000002   9AB9               SBI     0x17, 0x01
+     12            /// установим режим работы вывода ОС1А
+     13            /// и вид ШИМ
+     14            TCCR1A = (1<<COM1A1)|(1<<COM1A0) /// режим работы выхода OC1A
+     15                        ///Set OC1A/OC1B on Compare Match, clear OC1A/OC1B at TOP
+     16                    | (0<<WGM10)|(1<<WGM11);
+   \   00000004   EC02               LDI     R16, 194
+   \   00000006   BD0F               OUT     0x2F, R16
+     17             TCCR1B = (1<<WGM13)|(1<<WGM12);  /// режим fast PWM
+   \   00000008   E108               LDI     R16, 24
+   \   0000000A   BD0E               OUT     0x2E, R16
+     18             /// предельное значение ШИМ
+     19             ICR1   = PWM_TOP_VAL;   /// TOP - до чего считаем
+   \   0000000C   EF0F               LDI     R16, 255
+   \   0000000E   E013               LDI     R17, 3
+   \   00000010   BD17               OUT     0x27, R17
+   \   00000012   BD06               OUT     0x26, R16
+     20             OCR1A  = 0;             /// значение ШИМ - 0
+   \   00000014   E000               LDI     R16, 0
+   \   00000016   BD0B               OUT     0x2B, R16
+   \   00000018   BD0A               OUT     0x2A, R16
+     21             TCNT1  = 0;
+   \   0000001A   BD0D               OUT     0x2D, R16
+   \   0000001C   BD0C               OUT     0x2C, R16
+     22             TCCR1B |= (1<<CS10);    /// запустили таймер
+   \   0000001E   B50E               IN      R16, 0x2E
+   \   00000020   6001               ORI     R16, 0x01
+   \   00000022   BD0E               OUT     0x2E, R16
+     23          }
+   \   00000024   9508               RET
+     24          
+     25          
+     26          /// конец
+     27          /***********************************************************************/
+     28          
+     29          
+
+   Maximum stack usage in bytes:
+
+     Function     CSTACK RSTACK
+     --------     ------ ------
+     Init_TimerT1     0      2
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     _A_DDRB           1
+     _A_PORTB          1
+     _A_ICR1           2
+     _A_OCR1A          2
+     _A_TCNT1          2
+     _A_TCCR1B         1
+     _A_TCCR1A         1
+     Init_TimerT1     38
+
+ 
+ 10 bytes in segment ABSOLUTE
+ 38 bytes in segment CODE
+ 
+ 38 bytes of CODE memory
+  0 bytes of DATA memory (+ 10 bytes shared)
+
+Errors: none
+Warnings: none

@@ -1,0 +1,289 @@
+##############################################################################
+#                                                                            #
+#                                                      13/May/2008  22:26:46 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\main_.c        #
+#    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\main_.c"       #
+#                    --cpu=m8 -mt -o "C:\Documents and                       #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\Obj\"    #
+#                    -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММ #
+#                    А ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List\" #
+#                     -lA "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАМ #
+#                    МА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List\ #
+#                    " --initializers_in_flash -z9 --cross_call_passes=3     #
+#                    --debug -DENABLE_BIT_DEFINITIONS -e -I "C:\Program      #
+#                    Files\IAR Systems\Embedded Workbench 4.0                #
+#                    Evaluation\avr\INC\" -I "C:\Program Files\IAR           #
+#                    Systems\Embedded Workbench 4.0                          #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List\mai #
+#                    n_.lst                                                  #
+#    Object file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\Obj\main #
+#                    _.r90                                                   #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\main_.c
+      1          #include "DAC_iface.h"
+
+   \                                 In segment ABSOLUTE, at 0x32
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x35
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x38
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x53
+   \   union <unnamed> volatile __io _A_TCCR0
+   \                     _A_TCCR0:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x58
+   \   union <unnamed> volatile __io _A_TIFR
+   \                     _A_TIFR:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x59
+   \   union <unnamed> volatile __io _A_TIMSK
+   \                     _A_TIMSK:
+   \   00000000                      DS 1
+      2          
+      3          
+      4          // Процедура настройки таймера 0
+
+   \                                 In segment CODE, align 2, keep-with-next
+      5          void init_Timer_0(void)
+   \                     init_Timer_0:
+      6          {
+      7            TCCR0 = (1<<CS01)|(1<<CS00);  // Timer Clock = system clock / 64
+   \   00000000   E003               LDI     R16, 3
+   \   00000002   BF03               OUT     0x33, R16
+      8            // сбросим флаг переполнения если установлен
+      9            TIFR  = 1<<TOV0;		// Clear TOV0 / Clear pending interrupts
+   \   00000004   E001               LDI     R16, 1
+   \   00000006   BF08               OUT     0x38, R16
+     10            // разрешаем прерывания от события переполнение таймера 0
+     11            TIMSK = 1<<TOIE0;             // Enable Timer 0 Overflow Interrupt
+   \   00000008   BF09               OUT     0x39, R16
+     12          }
+   \   0000000A   9508               RET
+     13          
+     14          int data_2_OUT;
+     15          /// определим длинну массива - количество выборок в массиве
+     16          #define SIGNAL_ARR_SIZE     5
+     17          /// ступенчатый сигнал величина ступени 1В
+
+   \                                 In segment NEAR_F, align 1, keep-with-next
+     18          int flash SIGNAL_ARR[SIGNAL_ARR_SIZE] = {
+   \                     SIGNAL_ARR:
+   \   00000000   000003E807D0       DW 0, 1000, 2000, 3000, 4000
+   \              0BB80FA0    
+
+   \                                 In segment TINY_Z, align 1, keep-with-next
+   \   00000000                      REQUIRE `?<Segment init: TINY_Z>`
+   \                     data_2_OUT:
+   \   00000000                      DS 2
+     19            0, 1000, 2000, 3000, 4000
+     20          };
+     21          
+     22          int index; /// переменная для перебора значений массива
+   \                     index:
+   \   00000002                      DS 2
+     23          
+     24          // процедура прерывания по переполнению таймера Т0...
+     25          #pragma vector=TIMER0_OVF_vect
+
+   \                                 In segment CODE, align 2, keep-with-next
+     26          __interrupt void Timer_0_ovfEVENT(void)
+   \                     Timer_0_ovfEVENT:
+     27          {
+   \   00000000   93AA               ST      -Y, R26
+   \   00000002   939A               ST      -Y, R25
+   \   00000004   938A               ST      -Y, R24
+   \   00000006   93FA               ST      -Y, R31
+   \   00000008   93EA               ST      -Y, R30
+   \   0000000A   923A               ST      -Y, R3
+   \   0000000C   922A               ST      -Y, R2
+   \   0000000E   921A               ST      -Y, R1
+   \   00000010   920A               ST      -Y, R0
+   \   00000012   937A               ST      -Y, R23
+   \   00000014   936A               ST      -Y, R22
+   \   00000016   935A               ST      -Y, R21
+   \   00000018   934A               ST      -Y, R20
+   \   0000001A   933A               ST      -Y, R19
+   \   0000001C   932A               ST      -Y, R18
+   \   0000001E   931A               ST      -Y, R17
+   \   00000020   930A               ST      -Y, R16
+   \   00000022   B7AF               IN      R26, 0x3F
+     28            /// формирование на выходе ЦАП табличной функции
+     29            u_int itmp;
+     30            /// если дошли до конца массива...
+     31            if(index >= SIGNAL_ARR_SIZE)
+   \   00000024   ....               LDI     R30, data_2_OUT
+   \   00000026   E0F0               LDI     R31, 0
+   \   00000028   8182               LDD     R24, Z+2
+   \   0000002A   8193               LDD     R25, Z+3
+   \   0000002C   3085               CPI     R24, 5
+   \   0000002E   4090               SBCI    R25, 0
+   \   00000030   F014               BRLT    ??Timer_0_ovfEVENT_0
+     32               index = 0;             /// сброс индекса
+   \   00000032   83F2               STD     Z+2, R31
+   \   00000034   83F3               STD     Z+3, R31
+     33          
+     34            itmp = SIGNAL_ARR[index]; /// читаем значение из массива
+     35            DAC_Write(itmp);          /// запись данных в ЦАП DAC7611
+   \                     ??Timer_0_ovfEVENT_0:
+   \   00000036   ....               LDI     R16, LOW(SIGNAL_ARR)
+   \   00000038   ....               LDI     R17, (SIGNAL_ARR) >> 8
+   \   0000003A   8122               LDD     R18, Z+2
+   \   0000003C   8133               LDD     R19, Z+3
+   \   0000003E   0F22               LSL     R18
+   \   00000040   1F33               ROL     R19
+   \   00000042   0F02               ADD     R16, R18
+   \   00000044   1F13               ADC     R17, R19
+   \   00000046   01F8               MOVW    R31:R30, R17:R16
+   \   00000048   9105               LPM     R16, Z+
+   \   0000004A   9114               LPM     R17, Z
+   \   0000004C   ....               RCALL   DAC_Write
+     36            index++;                  /// переходим к следующему значению
+   \   0000004E   ....               LDI     R30, data_2_OUT
+   \   00000050   E0F0               LDI     R31, 0
+   \   00000052   8102               LDD     R16, Z+2
+   \   00000054   8113               LDD     R17, Z+3
+   \   00000056   5F0F               SUBI    R16, 255
+   \   00000058   4F1F               SBCI    R17, 255
+   \   0000005A   8302               STD     Z+2, R16
+   \   0000005C   8313               STD     Z+3, R17
+     37          
+     38            /// формирование пилообразного напряжения на выходе ЦАП
+     39            ///DAC_Write(data_2_OUT);/// запись данных в ЦАП DAC7611
+     40            ///data_2_OUT++;
+     41          }
+   \   0000005E   BFAF               OUT     0x3F, R26
+   \   00000060   9109               LD      R16, Y+
+   \   00000062   9119               LD      R17, Y+
+   \   00000064   9129               LD      R18, Y+
+   \   00000066   9139               LD      R19, Y+
+   \   00000068   9149               LD      R20, Y+
+   \   0000006A   9159               LD      R21, Y+
+   \   0000006C   9169               LD      R22, Y+
+   \   0000006E   9179               LD      R23, Y+
+   \   00000070   9009               LD      R0, Y+
+   \   00000072   9019               LD      R1, Y+
+   \   00000074   9029               LD      R2, Y+
+   \   00000076   9039               LD      R3, Y+
+   \   00000078   91E9               LD      R30, Y+
+   \   0000007A   91F9               LD      R31, Y+
+   \   0000007C   9189               LD      R24, Y+
+   \   0000007E   9199               LD      R25, Y+
+   \   00000080   91A9               LD      R26, Y+
+   \   00000082   9518               RETI
+     42          
+
+   \                                 In segment CODE, align 2, keep-with-next
+     43          void main( void )
+   \                     main:
+     44          {
+     45            /// включим подтяжку на всех выводах МК
+     46             PORTB = 0xFF;
+   \   00000000   EF0F               LDI     R16, 255
+   \   00000002   BB08               OUT     0x18, R16
+     47             PORTC = 0xFF;
+   \   00000004   BB05               OUT     0x15, R16
+     48             PORTD = 0xFF;
+   \   00000006   BB02               OUT     0x12, R16
+     49          
+     50             data_2_OUT = 0;
+   \   00000008   ....               LDI     R30, data_2_OUT
+   \   0000000A   E000               LDI     R16, 0
+   \   0000000C   E0F0               LDI     R31, 0
+   \   0000000E   8300               ST      Z, R16
+   \   00000010   8301               STD     Z+1, R16
+     51             index = 0;
+   \   00000012   8302               STD     Z+2, R16
+   \   00000014   8303               STD     Z+3, R16
+     52             /// настройка интерфейса для работы с ЦАП
+     53             Init_DAC_Iface();
+   \   00000016   ....               RCALL   Init_DAC_Iface
+     54          
+     55             // Процедура настройки таймера 0
+     56             init_Timer_0();
+   \   00000018   ....               RCALL   init_Timer_0
+     57          
+     58             /// разрешаем прерывания
+     59             _SEI();
+   \   0000001A   9478               SEI
+     60          
+     61            ///////////////////////////
+     62            /// основной цикл
+     63            while(1){
+     64              _NOP();/// команда nop ничего не делаем
+   \                     ??main_0:
+   \   0000001C   0000               NOP
+   \   0000001E   CFFE               RJMP    ??main_0
+     65            }
+     66          }
+
+   \                                 In segment INTVEC, offset 0x12, root
+   \                     `??Timer_0_ovfEVENT??INTVEC 18`:
+   \   00000012   ....               RJMP    Timer_0_ovfEVENT
+
+   Maximum stack usage in bytes:
+
+     Function            CSTACK RSTACK
+     --------            ------ ------
+     Timer_0_ovfEVENT       18      2
+       -> DAC_Write         18      2
+     init_Timer_0            0      2
+     main                    0      2
+       -> Init_DAC_Iface     0      2
+       -> init_Timer_0       0      2
+
+
+   Segment part sizes:
+
+     Function/Label                Bytes
+     --------------                -----
+     _A_PORTD                         1
+     _A_PORTC                         1
+     _A_PORTB                         1
+     _A_TCCR0                         1
+     _A_TIFR                          1
+     _A_TIMSK                         1
+     init_Timer_0                    12
+     SIGNAL_ARR                      10
+     data_2_OUT                       4
+     Timer_0_ovfEVENT               132
+     main                            32
+     ??Timer_0_ovfEVENT??INTVEC 18    2
+      Others                          6
+
+ 
+   6 bytes in segment ABSOLUTE
+ 176 bytes in segment CODE
+   6 bytes in segment INITTAB
+   2 bytes in segment INTVEC
+  10 bytes in segment NEAR_F
+   4 bytes in segment TINY_Z
+ 
+ 186 bytes of CODE memory (+ 8 bytes shared)
+   4 bytes of DATA memory (+ 6 bytes shared)
+
+Errors: none
+Warnings: none

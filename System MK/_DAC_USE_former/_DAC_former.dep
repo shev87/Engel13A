@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\Debug\List\former.lst</file>
+      <file>$PROJ_DIR$\Debug\List\former.s90</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$PROJ_DIR$\former.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$TOOLKIT_DIR$\inc\iom8.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\inc\comp_a90.h</file>
+      <file>$PROJ_DIR$\Debug\List\DAC_iface.lst</file>
+      <file>$TOOLKIT_DIR$\inc\inavr.h</file>
+      <file>$TOOLKIT_DIR$\src\template\cfgm8.xcl</file>
+      <file>$TOOLKIT_DIR$\src\template\cfg1toim.xcl</file>
+      <file>$PROJ_DIR$\Debug\List\_DAC_former.map</file>
+      <file>$PROJ_DIR$\types.h</file>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main_.r90</file>
+      <file>$PROJ_DIR$\Debug\List\DAC_iface.s90</file>
+      <file>$PROJ_DIR$\former.c</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\DAC_iface.r90</file>
+      <file>$PROJ_DIR$\Header.h</file>
+      <file>C:\Documents and Settings\Serg\SERG_DOCUM\_&#x41F;&#x420;&#x413;&#x420;&#x410;&#x41C;&#x41C;&#x410; &#x418;&#x41D;&#x421;&#x422;&#x418;&#x422;&#x423;&#x422;\LABORATOR_WORKS\_DAC_USE_former\main_.c</file>
+      <file>$PROJ_DIR$\DAC_iface.c</file>
+      <file>$PROJ_DIR$\Debug\List\main_.s90</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl1t-ec_mul.r90</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
+      <file>$PROJ_DIR$\Debug\List\main_.lst</file>
+      <file>$PROJ_DIR$\Debug\Exe\_DAC_former.dbg</file>
+      <file>$PROJ_DIR$\Debug\Exe\_DAC_former.hex</file>
+      <file>$PROJ_DIR$\DAC_iface.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\former.r90</file>
+      <file>$PROJ_DIR$\main_.c</file>
+      <file>C:\Documents and Settings\Serg\SERG_DOCUM\_&#x41F;&#x420;&#x413;&#x420;&#x410;&#x41C;&#x41C;&#x410; &#x418;&#x41D;&#x421;&#x422;&#x418;&#x422;&#x423;&#x422;\LABORATOR_WORKS\_DAC_USE_former\DAC_iface.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\former.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 30 1 0</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 3 20 5 14 7 9 6 25 18 4 2 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 27 12 28</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\DAC_iface.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 19 16 8</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 29 20 5 14 7 9 6 25 18 4 2 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\_DAC_former.dbg</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 12 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 10 11 19 15 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main_.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 15 23 26</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 29 20 5 14 7 9 6 25 18 4 2 13</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

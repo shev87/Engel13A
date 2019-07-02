@@ -1,0 +1,262 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+//                                                     09/Feb/2008  18:10:39 /
+// IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version               /
+// Copyright 1996-2006 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\main.c   /
+//    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА   /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\main.c"  /
+//                    --cpu=m8 -ms -o "C:\Documents and                      /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Ob /
+//                    j\" -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПР /
+//                    ГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\D /
+//                    ebug\List\" -lA "C:\Documents and                      /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Li /
+//                    st\" --initializers_in_flash -z9                       /
+//                    --cross_call_passes=3 --debug                          /
+//                    -DENABLE_BIT_DEFINITIONS --do_cross_call -e -I         /
+//                    "C:\Program Files\IAR Systems\Embedded Workbench 4.0   /
+//                    Evaluation\avr\INC\" -I "C:\Program Files\IAR          /
+//                    Systems\Embedded Workbench 4.0                         /
+//                    Evaluation\avr\INC\CLIB\" --eeprom_size 512            /
+//    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Li /
+//                    st\main.s90                                            /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME main
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "2"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        EXTERN ?PROLOGUE2_L09
+
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        PUBLIC main
+        FUNCTION main,021a03H
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_Y Y DATA
+        CFI StackFrame CFA_SP SP DATA
+        CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+        CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+        CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+        CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+        CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+        CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+        CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+        CFI ResourceParts SP SPH, SPL
+        CFI ResourceParts Y R29, R28
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 Undefined
+        CFI R17 Undefined
+        CFI R18 Undefined
+        CFI R19 Undefined
+        CFI R20 Undefined
+        CFI R21 Undefined
+        CFI R22 Undefined
+        CFI R23 Undefined
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 Undefined
+        CFI R31 Undefined
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon0
+        
+        EXTERN show_init
+        FUNCTION show_init,0202H
+        EXTERN Timer2_INIT
+        FUNCTION Timer2_INIT,0202H
+        EXTERN Timer2_START
+        FUNCTION Timer2_START,0202H
+        EXTERN InitIndikate
+        FUNCTION InitIndikate,0202H
+        EXTERN Set_INDIK_VAL
+        FUNCTION Set_INDIK_VAL,0202H
+        EXTERN Timer2_CHECK
+        FUNCTION Timer2_CHECK,0202H
+        EXTERN show_result
+        FUNCTION show_result,0202H
+        EXTERN Indikate
+        FUNCTION Indikate,0202H
+
+// C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\main.c
+//    1 #include "SHow_FUN.h"
+//    2 #include "Timer_2_CNTRL.h"
+//    3 #include "INDIKATE.h"
+//    4 
+
+        RSEG CODE:CODE:NOROOT(1)
+//    5 void main( void )
+main:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function main
+//    6 {
+        FUNCALL main, show_init
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Timer2_INIT
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Timer2_START
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, InitIndikate
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Set_INDIK_VAL
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Timer2_CHECK
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, show_result
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Indikate
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        RCALL   ?PROLOGUE2_L09
+        CFI R25 Frame(CFA_Y, -1)
+        CFI R24 Frame(CFA_Y, -2)
+        CFI CFA_Y Y+2
+//    7  /// переменная счетчик тиков по 100мкс
+//    8  u_int tick_cntr = 0;
+        LDI     R24, 0
+        LDI     R25, 0
+//    9 
+//   10   ///////////////////////////
+//   11   /// Предварительная настройка портов
+//   12   /// работаем с МК 1 к котрому прицеплены ЦАП и ключ силовой
+//   13   /// готовит порт для индикации результата Бит PB0 PORTB
+//   14   show_init();
+        RCALL   show_init
+//   15   /// настройка таймера 2 на генерацию временного интервала
+//   16   /// на опрос кнопок будет достаточно 20мс интервала
+//   17   Timer2_INIT();
+        RCALL   Timer2_INIT
+//   18   Timer2_START();  //// запуск таймера
+        RCALL   Timer2_START
+//   19   /// процедура настройка индикация режим работы
+//   20   InitIndikate();
+        RCALL   InitIndikate
+//   21   /// ф установить режим индикации как будет гореть LED
+//   22   /// для установвки другого режима индикации - один из
+//   23   /// определенных === /// режим индикации светодиода
+//   24   Set_INDIK_VAL(LED_1SHORT);
+        LDI     R16, 1
+        RCALL   Set_INDIK_VAL
+//   25 
+//   26   ///////////////////////////
+//   27   /// основной цикл
+//   28   while(1){
+//   29      ////////////////////////////////////////////////////////
+//   30      /// обработка таймера
+//   31      if(Timer2_CHECK()){/// каждые 100мкс
+??main_0:
+        RCALL   Timer2_CHECK
+        TST     R16
+        BREQ    ??main_0
+//   32         tick_cntr++;    /// считаем 100мкс
+        ADIW    R25:R24, 1
+//   33 
+//   34         /// функция выводит на ножку значение 10бит
+//   35         /// что бы посмотреть его осциллографом
+//   36         show_result(0xF0F0);
+        LDI     R16, 240
+        LDI     R17, 240
+        RCALL   show_result
+//   37         if(tick_cntr>=1000){     /// каждые 100 мс
+        CPI     R24, 232
+        LDI     R16, 3
+        CPC     R25, R16
+        BRCS    ??main_0
+//   38            tick_cntr = 0;        /// переустановим счетчик
+        LDI     R24, 0
+        LDI     R25, 0
+//   39            Indikate( );          /// процедура индикации текущего режима работы
+        RCALL   Indikate
+        RJMP    ??main_0
+        CFI EndBlock cfiBlock0
+//   40         }
+//   41 
+//   42      }/// обработка таймера каждые 100мкс
+//   43   }
+//   44 }
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        END
+//   45 
+//   46 //// задание добавить переменную которую будем передавать
+//   47 /// ф show_result и промсмотреть изменения осциллографом
+//   48 
+// 
+// 48 bytes in segment CODE
+// 
+// 48 bytes of CODE memory
+//
+//Errors: none
+//Warnings: none

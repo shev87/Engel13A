@@ -1,0 +1,246 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+//                                                     13/May/2008  22:26:46 /
+// IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version               /
+// Copyright 1996-2006 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\DAC_iface.c   /
+//    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА   /
+//                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\DAC_iface.c"  /
+//                    --cpu=m8 -mt -o "C:\Documents and                      /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\Obj\"   /
+//                    -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАМ /
+//                    МА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List /
+//                    \" -lA "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГ /
+//                    РАММА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\L /
+//                    ist\" --initializers_in_flash -z9                      /
+//                    --cross_call_passes=3 --debug                          /
+//                    -DENABLE_BIT_DEFINITIONS -e -I "C:\Program Files\IAR   /
+//                    Systems\Embedded Workbench 4.0 Evaluation\avr\INC\"    /
+//                    -I "C:\Program Files\IAR Systems\Embedded Workbench    /
+//                    4.0 Evaluation\avr\INC\CLIB\" --eeprom_size 512        /
+//    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List\DA /
+//                    C_iface.s90                                            /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME DAC_iface
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "1"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        PUBLIC CLK_SIGNAL
+        FUNCTION CLK_SIGNAL,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC DAC_Write
+        FUNCTION DAC_Write,021203H
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC Init_DAC_Iface
+        FUNCTION Init_DAC_Iface,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTD
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_Y Y DATA
+        CFI StackFrame CFA_SP SP DATA
+        CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+        CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+        CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+        CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+        CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+        CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+        CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+        CFI ResourceParts SP SPH, SPL
+        CFI ResourceParts Y R29, R28
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 Undefined
+        CFI R17 Undefined
+        CFI R18 Undefined
+        CFI R19 Undefined
+        CFI R20 Undefined
+        CFI R21 Undefined
+        CFI R22 Undefined
+        CFI R23 Undefined
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 Undefined
+        CFI R31 Undefined
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon0
+        
+// C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\DAC_iface.c
+//    1 #include "DAC_iface.h"
+
+        ASEGN ABSOLUTE:DATA:NOROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS 1
+//    2 
+//    3 /// настройка интерфейса для работы с ЦАП
+
+        RSEG CODE:CODE:NOROOT(1)
+//    4 void Init_DAC_Iface(void)
+Init_DAC_Iface:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function Init_DAC_Iface
+//    5 {
+//    6   DDRB = (_LOAD_bit|_CS_bit|_SDI_bit|_CLK_bit);
+        LDI     R16, 44
+        OUT     0x17, R16
+//    7 }
+        RET
+        CFI EndBlock cfiBlock0
+//    8 
+//    9 
+//   10 /// формирователь одного периода сигнала CLK _/-
+
+        RSEG CODE:CODE:NOROOT(1)
+//   11 void CLK_SIGNAL(void)
+CLK_SIGNAL:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function CLK_SIGNAL
+//   12 {
+//   13   PORTB &= ~_CLK_bit;
+        CBI     0x18, 0x05
+//   14   PORTB |= _CLK_bit;
+        SBI     0x18, 0x05
+//   15 }
+        RET
+        CFI EndBlock cfiBlock1
+//   16 
+//   17 /// запись данных в ЦАП DAC7611
+
+        RSEG CODE:CODE:NOROOT(1)
+//   18 void DAC_Write(int DATA)
+DAC_Write:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function DAC_Write
+//   19 {
+        FUNCALL DAC_Write, CLK_SIGNAL
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ST      -Y, R25
+        CFI R25 Frame(CFA_Y, -1)
+        CFI CFA_Y Y+1
+        MOV     R25, R17
+//   20 int MASK = 0x0800;
+//   21 
+//   22   CLR_CS;  /// начало - CS = 0
+        CBI     0x12, 0x02
+        RJMP    ??DAC_Write_0
+//   23 
+//   24   while(1){/// в цикле на количество тактовых импульсов
+//   25       /// установим или сбросим бит данных
+//   26       if( MASK&DATA ){
+//   27           SET_SDI; /// бит данных равен 1
+//   28       }else{
+//   29           CLR_SDI; /// бит данных равен 0
+??DAC_Write_1:
+        CBI     0x18, 0x03
+//   30       }
+//   31       /// формируем сигнал CLK
+//   32       CLK_SIGNAL();/// формирователь одного периода сигнала CLK \_/-\ 
+??DAC_Write_2:
+        RCALL   CLK_SIGNAL
+//   33       MASK >>= 1;
+//   34       if(MASK == 0)
+??DAC_Write_0:
+        BST     R25, 3
+        BRTC    ??DAC_Write_1
+        SBI     0x18, 0x03
+        RJMP    ??DAC_Write_2
+        CFI EndBlock cfiBlock2
+//   35          break;
+//   36   } /// конец цикла
+//   37 
+//   38   SET_CS; /// завершим - CS = 1
+//   39 
+//   40   /// сформируем сигнал LD в DAC7611
+//   41   CLR_LOAD;
+//   42   SET_LOAD;
+//   43 }
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        END
+// 
+//  3 bytes in segment ABSOLUTE
+// 32 bytes in segment CODE
+// 
+// 32 bytes of CODE memory
+//  0 bytes of DATA memory (+ 3 bytes shared)
+//
+//Errors: none
+//Warnings: none

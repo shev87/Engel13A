@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\Debug\Obj\Kbrd.r90</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_mul.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\main_.r90</file>
+      <file>$PROJ_DIR$\Debug\List\Timer_2_CNTRL.s90</file>
+      <file>$PROJ_DIR$\Debug\List\low_level_init.s90</file>
+      <file>$PROJ_DIR$\Kbrd.h</file>
+      <file>$PROJ_DIR$\Debug\List\Lab_3_PWM_and_BUT.map</file>
+      <file>$PROJ_DIR$\Debug\Exe\Lab_3_PWM_and_BUT.dbg</file>
+      <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Timer_2_CNTRL.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r90</file>
+      <file>$TOOLKIT_DIR$\inc\inavr.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$PROJ_DIR$\Timer_2_CNTRL.h</file>
+      <file>$PROJ_DIR$\Debug\List\INDIKATE.lst</file>
+      <file>$PROJ_DIR$\SHow_FUN.h</file>
+      <file>$PROJ_DIR$\Debug\List\main_.s90</file>
+      <file>$TOOLKIT_DIR$\inc\iom8.h</file>
+      <file>$PROJ_DIR$\Debug\List\INDIKATE.s90</file>
+      <file>$PROJ_DIR$\Debug\Obj\INDIKATE.r90</file>
+      <file>$PROJ_DIR$\Debug\List\Kbrd.lst</file>
+      <file>$PROJ_DIR$\Debug\List\timer1.s90</file>
+      <file>$PROJ_DIR$\timers.c</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\Lab_3_PWM_and_BUT.hex</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\types.h</file>
+      <file>$TOOLKIT_DIR$\src\template\cfgm8.xcl</file>
+      <file>$PROJ_DIR$\Debug\List\main_.lst</file>
+      <file>$PROJ_DIR$\Header.h</file>
+      <file>$PROJ_DIR$\Kbrd.c</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
+      <file>$TOOLKIT_DIR$\inc\comp_a90.h</file>
+      <file>$PROJ_DIR$\Debug\List\Timer_2_CNTRL.lst</file>
+      <file>$PROJ_DIR$\Debug\Exe\Lab_3_PWM_and_BUT.d90</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer1.r90</file>
+      <file>$PROJ_DIR$\timer1.h</file>
+      <file>$PROJ_DIR$\Debug\List\show_fun.lst</file>
+      <file>$PROJ_DIR$\INDIKATE.h</file>
+      <file>$PROJ_DIR$\Debug\List\low_level_init.lst</file>
+      <file>$PROJ_DIR$\Debug\Obj\show_fun.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\low_level_init.r90</file>
+      <file>$PROJ_DIR$\timer1.c</file>
+      <file>$PROJ_DIR$\timer1.&#x441;</file>
+      <file>$PROJ_DIR$\Debug\List\show_fun.s90</file>
+      <file>$PROJ_DIR$\main_.c</file>
+      <file>$PROJ_DIR$\low_level_init.c</file>
+      <file>$PROJ_DIR$\INDIKATE.c</file>
+      <file>$PROJ_DIR$\Debug\List\Kbrd.s90</file>
+      <file>$PROJ_DIR$\show_fun.c</file>
+      <file>$PROJ_DIR$\Timer_2_CNTRL.c</file>
+      <file>$PROJ_DIR$\timers.h</file>
+      <file>$PROJ_DIR$\Debug\List\timer1.lst</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 8 7 27</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\Lab_3_PWM_and_BUT.dbg</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 7 27</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 30 9 22 0 11 44 3 43 38 2</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 12</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Kbrd.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 0 51 23</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 6 32 20 15 35 13 26 34 1 14 10 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\Lab_3_PWM_and_BUT.d90</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 30 9 22 11 44 3 43 2</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\timer1.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 38 24 55</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 39 32 20 15 35 13 26 34 1 14 10 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main_.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 3 19 31</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 18 32 20 15 35 13 26 34 1 14 10 29 16 41 6 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\low_level_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 44 5 42</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 13 26 32 20 15 35 34 1 14 10 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\INDIKATE.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 22 21 17</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 41 32 20 15 35 13 26 34 1 14 10 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\show_fun.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 43 47 40</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 18 32 20 15 35 13 26 34 1 14 10 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Timer_2_CNTRL.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 11 4 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 16 32 20 15 35 13 26 34 1 14 10 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

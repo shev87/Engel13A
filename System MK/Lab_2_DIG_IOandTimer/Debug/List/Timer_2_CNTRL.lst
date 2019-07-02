@@ -1,0 +1,238 @@
+##############################################################################
+#                                                                            #
+#                                                      09/Feb/2008  18:10:39 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Timer_2_C #
+#                    NTRL.c                                                  #
+#    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Timer_2_C #
+#                    NTRL.c" --cpu=m8 -ms -o "C:\Documents and               #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Obj #
+#                    \" -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГР #
+#                    АММА ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debu #
+#                    g\List\" -lA "C:\Documents and                          #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Lis #
+#                    t\" --initializers_in_flash -z9 --cross_call_passes=3   #
+#                    --debug -DENABLE_BIT_DEFINITIONS --do_cross_call -e -I  #
+#                    "C:\Program Files\IAR Systems\Embedded Workbench 4.0    #
+#                    Evaluation\avr\INC\" -I "C:\Program Files\IAR           #
+#                    Systems\Embedded Workbench 4.0                          #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Lis #
+#                    t\Timer_2_CNTRL.lst                                     #
+#    Object file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Obj #
+#                    \Timer_2_CNTRL.r90                                      #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Timer_2_CNTRL.c
+      1          #include "Timer_2_CNTRL.h"
+
+   \                                 In segment ABSOLUTE, at 0x43
+   \   union <unnamed> volatile __io _A_OCR2
+   \                     _A_OCR2:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x44
+   \   union <unnamed> volatile __io _A_TCNT2
+   \                     _A_TCNT2:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x45
+   \   union <unnamed> volatile __io _A_TCCR2
+   \                     _A_TCCR2:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x58
+   \   union <unnamed> volatile __io _A_TIFR
+   \                     _A_TIFR:
+   \   00000000                      DS 1
+      2          
+      3          //// что бы сформировать заданный интервал времени
+      4          //// нужно определиться с коэффициентом деления
+      5          //// возможно 1,8,32,64,128,256,1024
+      6          
+      7          //// желательно чтобы за один прогон счетчика мы
+      8          /// сформировали заданный интервал поэотму
+      9          /// число переполнений не должно быть более 1
+     10          
+     11          /// число переполнениий считаем так
+     12          /// Noverflow (1) = Fquarz*TIME_SETTED/(CountVAL*Kprescaler)
+     13          /// отсюда
+     14          /// Kprescaler >=  Fquarz*TIME_SETTED/CountVAL
+     15          /// где CountVAL - емкость счетчика T2 = 256
+     16          /// после того ка определили Kprescaler
+     17          /// значение загружаемое в регистр сравнения
+     18          /// определиться так COMPARE_VAL = Fquarz*TIME_SETTED/Kprescaler
+     19          
+     20          
+     21          //// можно получить без предделителя
+     22          #if (TIME_INTERVAL*SYSTEM_CLOCK/25600000U) < 1
+     23          #define OCR2VAL		(TIME_INTERVAL*SYSTEM_CLOCK/100000U/1)
+     24          #define TIMER_2_START_MASK		0x01
+     25          
+     26          //// можно получить если коэффициент делитель реван 8
+     27          #elif (TIME_INTERVAL*SYSTEM_CLOCK/25600000U/8) < 1
+     28          #define OCR2VAL		(TIME_INTERVAL*SYSTEM_CLOCK/100000U/8)
+     29          #define TIMER_2_START_MASK		0x02
+     30          
+     31          //// можно получить если коэффициент делитель реван 32
+     32          #elif (TIME_INTERVAL*SYSTEM_CLOCK/25600000U/32) < 1
+     33          #define OCR2VAL		(TIME_INTERVAL*SYSTEM_CLOCK/100000U/32)
+     34          #define TIMER_2_START_MASK		0x03
+     35          
+     36          //// можно получить если коэффициент делитель реван 64
+     37          #elif (TIME_INTERVAL*SYSTEM_CLOCK/25600000U/64) < 1
+     38          #define OCR2VAL		(TIME_INTERVAL*SYSTEM_CLOCK/100000U/64)
+     39          #define TIMER_2_START_MASK		0x04
+     40          
+     41          //// можно получить если коэффициент делитель реван 128
+     42          #elif (TIME_INTERVAL*SYSTEM_CLOCK/25600000U/128) < 1
+     43          #define OCR2VAL		(TIME_INTERVAL*SYSTEM_CLOCK/100000U/128)
+     44          #define TIMER_2_START_MASK		0x05
+     45          
+     46          //// можно получить если коэффициент делитель реван 256
+     47          #elif (TIME_INTERVAL*SYSTEM_CLOCK/25600000U/256) < 1
+     48          #define OCR2VAL		(TIME_INTERVAL*SYSTEM_CLOCK/100000U/256)
+     49          #define TIMER_2_START_MASK		0x06
+     50          
+     51          //// можно получить если коэффициент делитель реван 1024
+     52          #elif (TIME_INTERVAL*SYSTEM_CLOCK/25600000U/1024) < 1
+     53          #define OCR2VAL		(TIME_INTERVAL*SYSTEM_CLOCK/100000U/1024)
+     54          #define TIMER_2_START_MASK		0x07
+     55          
+     56          //// нельзя получить	
+     57          #else
+     58          #error "ЗАДАННОЕ ВРЕМЯ ПЕРЕПОЛНЕНИЯ -TIME_INTERVAL- Т2 СЛИШКОМ ВЕЛИКО"
+     59          #define OCR2VAL				0x00
+     60          #define TIMER_2_START_MASK		0x00
+     61          
+     62          #endif
+     63          ///////////////////////////////
+     64          /// На выходе этой конструкции имеем
+     65          /// OCR2VAL и TIMER_2_START_MASK
+     66          /// которые определят конфигурацию таймера 2 для
+     67          /// формирования заданного интервала
+     68          /// понятно что этот интервал не точно равен заданному времени
+     69          /// а с учетом погрешности до 1 тактового импульса счетчика
+     70          /// и на 1024 и 8МГц может быть 128мкс
+     71          
+     72          #define TIMER_2_START	TCCR2 |= TIMER_2_START_MASK;
+     73          #define TIMER_2_STOP	TCCR2 &= ~0x07;
+     74          
+     75          
+     76          //// настройка таймера 2 на генерацию временного интервала
+     77          /// на опрос кнопок будет достаточно 20мс интервала
+
+   \                                 In segment CODE, align 2, keep-with-next
+     78          void Timer2_INIT(void)
+   \                     Timer2_INIT:
+     79          {
+     80              TIMER_2_STOP; 	/// на всякий случай		
+   \   00000000   B505               IN      R16, 0x25
+   \   00000002   7F08               ANDI    R16, 0xF8
+   \   00000004   BD05               OUT     0x25, R16
+     81              TCCR2 = (1<<WGM21); /// режим работы счет до величины записаной
+   \   00000006   E008               LDI     R16, 8
+   \   00000008   BD05               OUT     0x25, R16
+     82              OCR2 = (char)OCR2VAL; /// значение соответствует интервалу TIME_INTERVAL
+   \   0000000A   E604               LDI     R16, 100
+   \   0000000C   BD03               OUT     0x23, R16
+     83              TCNT2 = 0;
+   \   0000000E   E000               LDI     R16, 0
+   \   00000010   BD04               OUT     0x24, R16
+     84          }
+   \   00000012   9508               RET
+     85          //// опрос флага временного интервала
+     86          //// вернет да прошел заданный интервал времени
+
+   \                                 In segment CODE, align 2, keep-with-next
+     87          u_char Timer2_CHECK(void)
+   \                     Timer2_CHECK:
+     88          {
+     89            if(TIFR&(1<<OCF2)){
+   \   00000000   B708               IN      R16, 0x38
+   \   00000002   FF07               SBRS    R16, 7
+   \   00000004   C004               RJMP    ??Timer2_CHECK_0
+     90               TIFR = (1<<OCF2); /// сбросим флаг
+   \   00000006   E800               LDI     R16, 128
+   \   00000008   BF08               OUT     0x38, R16
+     91               return 1;
+   \   0000000A   E001               LDI     R16, 1
+   \   0000000C   9508               RET
+     92            }
+     93            return 0;
+   \                     ??Timer2_CHECK_0:
+   \   0000000E   E000               LDI     R16, 0
+   \   00000010   9508               RET
+     94          }
+     95          //// запуск таймера
+
+   \                                 In segment CODE, align 2, keep-with-next
+     96          void Timer2_START(void)
+   \                     Timer2_START:
+     97          {
+     98          	TIMER_2_START;
+   \   00000000   B505               IN      R16, 0x25
+   \   00000002   6002               ORI     R16, 0x02
+   \   00000004                      REQUIRE ?Subroutine0
+   \   00000004                      ;               // Fall through to label ?Subroutine0
+     99          }
+
+   \                                 In segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   BD05               OUT     0x25, R16
+   \   00000002   9508               RET
+    100          //// останов таймера
+
+   \                                 In segment CODE, align 2, keep-with-next
+    101          void Timer2_STOP(void)
+   \                     Timer2_STOP:
+    102          {
+    103          	TIMER_2_STOP;
+   \   00000000   B505               IN      R16, 0x25
+   \   00000002   7F08               ANDI    R16, 0xF8
+   \   00000004   ....               RJMP    ?Subroutine0
+    104          }
+
+   Maximum stack usage in bytes:
+
+     Function     CSTACK RSTACK
+     --------     ------ ------
+     Timer2_CHECK     0      2
+     Timer2_INIT      0      2
+     Timer2_START     0      2
+     Timer2_STOP      0      2
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     _A_OCR2           1
+     _A_TCNT2          1
+     _A_TCCR2          1
+     _A_TIFR           1
+     Timer2_INIT      20
+     Timer2_CHECK     18
+     Timer2_START      4
+     ?Subroutine0      4
+     Timer2_STOP       6
+
+ 
+  4 bytes in segment ABSOLUTE
+ 52 bytes in segment CODE
+ 
+ 52 bytes of CODE memory
+  0 bytes of DATA memory (+ 4 bytes shared)
+
+Errors: none
+Warnings: none

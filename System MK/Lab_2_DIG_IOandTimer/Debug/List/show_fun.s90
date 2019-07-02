@@ -1,0 +1,256 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+//                                                     09/Feb/2008  18:10:39 /
+// IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version               /
+// Copyright 1996-2006 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\show_fun /
+//                    .c                                                     /
+//    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА   /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\show_fun /
+//                    .c" --cpu=m8 -ms -o "C:\Documents and                  /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Ob /
+//                    j\" -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПР /
+//                    ГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\D /
+//                    ebug\List\" -lA "C:\Documents and                      /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Li /
+//                    st\" --initializers_in_flash -z9                       /
+//                    --cross_call_passes=3 --debug                          /
+//                    -DENABLE_BIT_DEFINITIONS --do_cross_call -e -I         /
+//                    "C:\Program Files\IAR Systems\Embedded Workbench 4.0   /
+//                    Evaluation\avr\INC\" -I "C:\Program Files\IAR          /
+//                    Systems\Embedded Workbench 4.0                         /
+//                    Evaluation\avr\INC\CLIB\" --eeprom_size 512            /
+//    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\Debug\Li /
+//                    st\show_fun.s90                                        /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME show_fun
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "2"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_PORTB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        PUBLIC show_init
+        FUNCTION show_init,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC show_result
+        FUNCTION show_result,0203H
+        LOCFRAME RSTACK, 2, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_Y Y DATA
+        CFI StackFrame CFA_SP SP DATA
+        CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+        CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+        CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+        CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+        CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+        CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+        CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+        CFI ResourceParts SP SPH, SPL
+        CFI ResourceParts Y R29, R28
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 Undefined
+        CFI R17 Undefined
+        CFI R18 Undefined
+        CFI R19 Undefined
+        CFI R20 Undefined
+        CFI R21 Undefined
+        CFI R22 Undefined
+        CFI R23 Undefined
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 Undefined
+        CFI R31 Undefined
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon0
+        
+// C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_2_DIG_IOandTimer\show_fun.c
+//    1 #include "SHow_FUN.h"
+
+        ASEGN ABSOLUTE:DATA:NOROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS 1
+//    2 
+//    3 
+//    4 ///// определимся сфункциями
+//    5 //// настройка
+//    6  /// готовит порт для индикации результата на
+
+        RSEG CODE:CODE:NOROOT(1)
+//    7 void show_init(void)
+show_init:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function show_init
+//    8 {
+//    9   PORT_INI_SHOW  |= (1<<PIN_SHOW);   // настроили порт
+        SBI     0x17, 0x00
+        CFI EndBlock cfiBlock0
+//   10   PORT_SHOW      |= (1<<PIN_SHOW);  // бит равен 1
+        REQUIRE ?Subroutine0
+        ;               // Fall through to label ?Subroutine0
+//   11 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI NoFunction
+        SBI     0x18, 0x00
+        RET
+        CFI EndBlock cfiBlock1
+//   12 
+//   13 //// ф. выводит на вывод значение измеренное АЦП
+//   14 //// что бы посмотреть его Осциллографом
+
+        RSEG CODE:CODE:NOROOT(1)
+//   15 void show_result( unsigned int VAL)
+show_result:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function show_result
+//   16 {
+//   17  char ctmp;
+//   18  unsigned int MASK = 0x01;
+        LDI     R18, 1
+        LDI     R19, 0
+//   19   ctmp = 0xF;
+//   20   //// выводим синхробит бит равен 0
+//   21   PORT_SHOW |= (1<<PIN_SHOW);
+        SBI     0x18, 0x00
+        LDI     R20, 15
+        RJMP    ??show_result_0
+//   22   while(--ctmp){
+//   23      _NOP();
+??show_result_1:
+        NOP
+//   24   }
+??show_result_0:
+        DEC     R20
+        BRNE    ??show_result_1
+//   25   //// выводим начинаем с младшего бита 10 бит
+//   26   ctmp = 10;
+        LDI     R21, 10
+//   27   do{
+//   28      /////делаем опорные точки чтобы увидеть бит
+//   29      PORT_SHOW |= (1<<PIN_SHOW);
+??show_result_2:
+        SBI     0x18, 0x00
+//   30      PORT_SHOW &= ~(1<<PIN_SHOW); // бит равен 0
+        CBI     0x18, 0x00
+//   31 
+//   32      if(VAL&MASK){//// бит равен 1
+        MOVW    R23:R22, R19:R18
+        AND     R22, R16
+        AND     R23, R17
+        OR      R22, R23
+        BREQ    ??show_result_3
+//   33         PORT_SHOW |= (1<<PIN_SHOW);
+        SBI     0x18, 0x00
+        RJMP    ??show_result_4
+//   34      }else{ //// бит равен 0
+//   35         PORT_SHOW &= ~(1<<PIN_SHOW); // бит равен 0
+??show_result_3:
+        CBI     0x18, 0x00
+//   36      }
+//   37      ////  пауза
+//   38      _NOP();
+??show_result_4:
+        NOP
+//   39      _NOP();
+        NOP
+//   40      _NOP();
+        NOP
+//   41      /// передвигаем Маску
+//   42      MASK <<= 1;
+        LSL     R18
+        ROL     R19
+//   43   }while(ctmp--);
+        MOV     R20, R21
+        DEC     R21
+        TST     R20
+        BRNE    ??show_result_2
+//   44  PORT_SHOW |= (1<<PIN_SHOW); // бит равен 1
+        RJMP    ?Subroutine0
+        CFI EndBlock cfiBlock2
+//   45 }
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        END
+// 
+//  2 bytes in segment ABSOLUTE
+// 64 bytes in segment CODE
+// 
+// 64 bytes of CODE memory
+//  0 bytes of DATA memory (+ 2 bytes shared)
+//
+//Errors: none
+//Warnings: none

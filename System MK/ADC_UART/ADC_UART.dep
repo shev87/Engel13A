@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\Debug\Obj\main_uart_rem.pbi</file>
+      <file>$TOOLKIT_DIR$\src\template\cfg1soim.xcl</file>
+      <file>$PROJ_DIR$\Header.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec_mul.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\inavr.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\ADC_UART.dbg</file>
+      <file>$PROJ_DIR$\Debug\List\ADC_UART.map</file>
+      <file>$PROJ_DIR$\Debug\List\main_uart_rem.lst</file>
+      <file>$TOOLKIT_DIR$\src\template\cfgm8.xcl</file>
+      <file>$TOOLKIT_DIR$\inc\iom8.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main_uart_rem.r90</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\ADC_UART.hex</file>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r90</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\ADC_UART.pbd</file>
+      <file>$TOOLKIT_DIR$\inc\comp_a90.h</file>
+      <file>$PROJ_DIR$\FLOAT2ASCII.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\float2ASCIIasm.r90</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$PROJ_DIR$\types.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
+      <file>$PROJ_DIR$\main_uart_rem.c</file>
+      <file>$PROJ_DIR$\float2ASCIIasm.s90</file>
+      <file>$PROJ_DIR$\Debug\List\main_uart_rem.s90</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 7 15 6</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\ADC_UART.dbg</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 7 15</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 9 1 22 11 3</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Obj\ADC_UART.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 0</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main_uart_rem.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 11 28 8</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 2 10 16 20 5 13 18 25 23 14 24 21</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 2 10 16 20 5 13 18 25 23 14 24 21</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\float2ASCIIasm.s90</name>
+      <outputs>
+        <tool>
+          <name>AAVR</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

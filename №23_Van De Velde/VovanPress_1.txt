@@ -1,0 +1,90 @@
+﻿#define FAULT 12
+volatile char state = 1;
+volatile int DELAY = 0;
+char ON_flag = 0;
+	
+
+
+void EXT_INT_1()
+{
+state = FAULT	//беда беда, стоп машины!
+}
+
+void TIM1_OVF()	//прерывание по переполнению таймера
+{
+	if((i<DELAY)&&(ON_flag == 1))
+	{
+		i++;
+	}
+	else
+	{
+		if ((state<5)&&(state!=FAULT))	смена состояний работы
+		{
+			state = state + 1;
+		}
+		else 
+		{
+			state = 1;
+		}
+	}
+
+}
+
+char Button_State()
+{
+	if (PINB.2==1)
+		{
+			delay_ms(20);	
+			if (PINB.2==1)
+			{
+				return 1; 
+			} 
+			else
+			{
+				return 0;
+			}
+		}
+}
+
+void on()
+{
+		switch (state)
+		{
+			case 1:
+				PORTB.0 = 1;
+				PORTB.1 = 0;
+			case 2:
+				PORTB.0 = 0;
+				PORTB.1 = 0;
+			case 3:
+				PORTB.0 = 0;
+				PORTB.1 = 1;
+			case 4:
+				PORTB.0 = 0;
+				PORTB.1 = 0;
+				ON_flag = 0;	//отработали 4 состояния, сброс флага работы
+			case FAULT:			//авария, вырубаем что нам нужно и сообщаем куда нужно
+				PORTB.0 = 0;
+				PORTB.1 = 0;
+	
+		}
+}
+
+void main()
+{
+
+	while(1)
+	{
+		if (опрос кнопок)
+		{
+			ON_flag = 1;	//триггер начала работы пресса, команда разрешения работы
+		}
+		if (ON_flag)
+		{
+			on();
+		}
+		
+ 
+	}
+
+}

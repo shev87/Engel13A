@@ -1,0 +1,337 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+//                                                     10/Feb/2008  00:02:20 /
+// IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version               /
+// Copyright 1996-2006 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\INDIKATE.c /
+//    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА   /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\INDIKATE.c /
+//                    " --cpu=m8 -ms -o "C:\Documents and                    /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Obj\ /
+//                    " -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГР /
+//                    АММА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug /
+//                    \List\" -lA "C:\Documents and                          /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List /
+//                    \" --initializers_in_flash -z9 --cross_call_passes=3   /
+//                    --debug -DENABLE_BIT_DEFINITIONS --do_cross_call -e    /
+//                    -I "C:\Program Files\IAR Systems\Embedded Workbench    /
+//                    4.0 Evaluation\avr\INC\" -I "C:\Program Files\IAR      /
+//                    Systems\Embedded Workbench 4.0                         /
+//                    Evaluation\avr\INC\CLIB\" --eeprom_size 512            /
+//    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List /
+//                    \INDIKATE.s90                                          /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME INDIKATE
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "2"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE4_L09
+        EXTERN ?need_segment_init
+
+        PUBWEAK `?<Segment init: NEAR_Z>`
+        PUBLIC Get_INDIK_VAL
+        FUNCTION Get_INDIK_VAL,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC IND_ARR
+        PUBLIC Indikate
+        FUNCTION Indikate,021203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC IndikateFN
+        FUNCTION IndikateFN,0203H
+        LOCFRAME CSTACK, 4, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC IndikateVALUE
+        PUBLIC InitIndikate
+        FUNCTION InitIndikate,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC Set_INDIK_VAL
+        FUNCTION Set_INDIK_VAL,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_PORTC
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_Y Y DATA
+        CFI StackFrame CFA_SP SP DATA
+        CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+        CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+        CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+        CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+        CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+        CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+        CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+        CFI ResourceParts SP SPH, SPL
+        CFI ResourceParts Y R29, R28
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 Undefined
+        CFI R17 Undefined
+        CFI R18 Undefined
+        CFI R19 Undefined
+        CFI R20 Undefined
+        CFI R21 Undefined
+        CFI R22 Undefined
+        CFI R23 Undefined
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 Undefined
+        CFI R31 Undefined
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon0
+        
+// C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\INDIKATE.c
+//    1 #include "INDIKATE.h"
+
+        ASEGN ABSOLUTE:DATA:NOROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS 1
+//    2 
+//    3 
+//    4 ////////////////////////////////////
+//    5 // переменные для индикации режима работы
+
+        RSEG NEAR_Z:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//    6 char IndikateVALUE;
+IndikateVALUE:
+        DS 1
+//    7 ////////////////////////////////////
+//    8 /// ф установить режим индикации как будет гореть LED
+
+        RSEG CODE:CODE:NOROOT(1)
+//    9 void Set_INDIK_VAL(char VAL)
+Set_INDIK_VAL:
+//   10 {
+//   11   IndikateVALUE = VAL;
+        REQUIRE ?Subroutine0
+        ;               // Fall through to label ?Subroutine0
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        STS     IndikateVALUE, R16
+        RET
+        CFI EndBlock cfiBlock0
+//   12 }
+//   13 /// ф считать текущий режим индикации
+
+        RSEG CODE:CODE:NOROOT(1)
+//   14 char Get_INDIK_VAL(void)
+Get_INDIK_VAL:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function Get_INDIK_VAL
+//   15 {
+//   16   return IndikateVALUE;
+        LDS     R16, IndikateVALUE
+        RET
+        CFI EndBlock cfiBlock1
+//   17 }
+//   18 
+//   19 ////////////////////////////////////
+//   20 // массив для идикации состояний контроллера
+
+        RSEG NEAR_F:CODE:NOROOT(0)
+//   21 flash char IND_ARR[9] = { 0x00, 0x01, 0x05, 0x15, 0x55, 0xFF, 0x7F, 0x5F, 0xF0 };
+IND_ARR:
+        DB 0, 1, 5, 21, 85, 255, 127, 95, 240
+//   22 //////////////////////////////////////////////////
+//   23 /// функция индицирует количеством вспышек текущий режим работы
+//   24 /// передаем на вход номер режима
+//   25 /// если ррежим равен INIT_MOD - просто включим светодиод
+
+        RSEG CODE:CODE:NOROOT(1)
+//   26 void IndikateFN (char x)
+IndikateFN:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function IndikateFN
+//   27 {
+        RCALL   ?PROLOGUE4_L09
+        CFI R27 Frame(CFA_Y, -1)
+        CFI R26 Frame(CFA_Y, -2)
+        CFI R25 Frame(CFA_Y, -3)
+        CFI R24 Frame(CFA_Y, -4)
+        CFI CFA_Y Y+4
+//   28 static char loc_val = 0, mask = 0;
+//   29 char tmp;
+//   30  if(mask == 0){
+        LDI     R26, LOW((??loc_val + 1))
+        LDI     R27, HIGH((??loc_val + 1))
+        LD      R17, X
+        SBIW    R27:R26, 1
+        TST     R17
+        BRNE    ??IndikateFN_0
+//   31     mask = 0x80; // если прошли весь байт начнем сначала
+        LDI     R17, 128
+        ADIW    R27:R26, 1
+        ST      X, R17
+//   32     tmp = IND_ARR[x];
+        LDI     R30, LOW(IND_ARR)
+        LDI     R31, (IND_ARR) >> 8
+        LDI     R17, 0
+        ADD     R30, R16
+        ADC     R31, R17
+        LPM     R16, Z
+//   33     if(loc_val != tmp) // изменили режим индикации
+        LD      R17, -X
+        CP      R17, R16
+        BREQ    ??IndikateFN_0
+//   34        loc_val = tmp;
+        ST      X, R16
+//   35  }
+//   36 // работа
+//   37  if(loc_val & mask) // если 1 зажигаем светодиод
+??IndikateFN_0:
+        ADIW    R27:R26, 1
+        LD      R16, X
+        LD      R17, -X
+        AND     R17, R16
+        BREQ    ??IndikateFN_1
+//   38         SET_I_BIT;
+        SBI     0x15, 0x01
+        RJMP    ??IndikateFN_2
+//   39  else   CLR_I_BIT;  // если 0 тушим светодиод
+??IndikateFN_1:
+        CBI     0x15, 0x01
+//   40  mask >>= 1;
+??IndikateFN_2:
+        LSR     R16
+        ADIW    R27:R26, 1
+        ST      X, R16
+//   41 }
+        LDI     R30, 4
+        RJMP    ?EPILOGUE_B4_L09
+        CFI EndBlock cfiBlock2
+
+        RSEG NEAR_Z:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+??loc_val:
+        DS 1
+        DS 1
+//   42 /// процедура индикации текущего режима работы
+
+        RSEG CODE:CODE:NOROOT(1)
+//   43 void Indikate( void )
+Indikate:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function Indikate
+//   44 {
+//   45   IndikateFN(IndikateVALUE);
+        FUNCALL Indikate, IndikateFN
+        LOCFRAME RSTACK, 2, STACK
+        LDS     R16, IndikateVALUE
+        RJMP    IndikateFN
+        CFI EndBlock cfiBlock3
+//   46 }
+//   47 
+//   48 //////////////////////////////////////////////////
+//   49 //// процедура индикация режим работы
+
+        RSEG CODE:CODE:NOROOT(1)
+//   50 void InitIndikate(void)
+InitIndikate:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI Function InitIndikate
+//   51 {
+//   52  LED_DIR_PORT |= (1<<LED); // настроим вывод управления LED
+        SBI     0x14, 0x01
+//   53  CLR_I_BIT;
+        CBI     0x15, 0x01
+//   54  IndikateVALUE = LED_IS_OFF;
+        LDI     R16, 0
+        RJMP    ?Subroutine0
+        CFI EndBlock cfiBlock4
+//   55 }
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_Z>`:
+        DW      SFE(NEAR_Z) - SFB(NEAR_Z)
+        DW      SFB(NEAR_Z)
+        DW      0
+        REQUIRE ?need_segment_init
+
+        END
+// 
+//  2 bytes in segment ABSOLUTE
+// 92 bytes in segment CODE
+//  6 bytes in segment INITTAB
+//  9 bytes in segment NEAR_F
+//  3 bytes in segment NEAR_Z
+// 
+// 101 bytes of CODE memory (+ 6 bytes shared)
+//   3 bytes of DATA memory (+ 2 bytes shared)
+//
+//Errors: none
+//Warnings: none

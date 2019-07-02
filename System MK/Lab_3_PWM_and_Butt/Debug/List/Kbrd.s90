@@ -1,0 +1,367 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+//                                                     10/Feb/2008  00:02:20 /
+// IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version               /
+// Copyright 1996-2006 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Kbrd.c     /
+//    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА   /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Kbrd.c"    /
+//                    --cpu=m8 -ms -o "C:\Documents and                      /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Obj\ /
+//                    " -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГР /
+//                    АММА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug /
+//                    \List\" -lA "C:\Documents and                          /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List /
+//                    \" --initializers_in_flash -z9 --cross_call_passes=3   /
+//                    --debug -DENABLE_BIT_DEFINITIONS --do_cross_call -e    /
+//                    -I "C:\Program Files\IAR Systems\Embedded Workbench    /
+//                    4.0 Evaluation\avr\INC\" -I "C:\Program Files\IAR      /
+//                    Systems\Embedded Workbench 4.0                         /
+//                    Evaluation\avr\INC\CLIB\" --eeprom_size 512            /
+//    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List /
+//                    \Kbrd.s90                                              /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME Kbrd
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "2"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        EXTERN ?need_segment_init
+
+        PUBWEAK `?<Segment init: NEAR_Z>`
+        PUBLIC ChkKbrd
+        FUNCTION ChkKbrd,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC GetPrsCode
+        FUNCTION GetPrsCode,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBWEAK _A_PINC
+        PUBWEAK _A_SREG
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_Y Y DATA
+        CFI StackFrame CFA_SP SP DATA
+        CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+        CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+        CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+        CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+        CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+        CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+        CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+        CFI ResourceParts SP SPH, SPL
+        CFI ResourceParts Y R29, R28
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 Undefined
+        CFI R17 Undefined
+        CFI R18 Undefined
+        CFI R19 Undefined
+        CFI R20 Undefined
+        CFI R21 Undefined
+        CFI R22 Undefined
+        CFI R23 Undefined
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 Undefined
+        CFI R31 Undefined
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon0
+        
+// C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Kbrd.c
+//    1 #include "Kbrd.h"
+
+        ASEGN ABSOLUTE:DATA:NOROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS 1
+//    2 
+
+        RSEG NEAR_Z:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//    3 static u_char flags = 0;
+flags:
+        DS 1
+        DS 1
+        DS 1
+//    4 static u_char Countr_SW1 = 0;
+//    5 static u_char Countr_SW2 = 0;
+//    6 
+//    7 #define SHORTPRS	10
+//    8 #define LONGPRS		140
+//    9 
+//   10 #define SW1_SHORTPRS	0x01
+//   11 #define SW1_LONGPRS	0x02
+//   12 #define SW2_SHORTPRS	0x04
+//   13 #define SW2_LONGPRS	0x06
+//   14 
+//   15 /// Ножка на которой прицеплена кнопка SW1
+//   16 #define Butt_SW1_BIT 	(1<<PC2)
+//   17 /// Ножка на которой прицеплена кнопка SW2
+//   18 #define Butt_SW2_BIT 	(1<<PC3)
+//   19 /// маска для кнопок
+//   20 #define Butt_MASK     (Butt_SW2_BIT|Butt_SW1_BIT)
+//   21 /// Порт на котором висит кнопка
+//   22 #define Butt_SW_PORT 	PINC
+//   23 
+//   24 
+//   25 
+//   26 /// Отладка для работы
+//   27 ///#define ButtBIT 	(1<<PD2)
+//   28 ///#define ButtPORT 	PIND
+//   29 
+//   30 #define CHK_NOTPRS	((Butt_SW_PORT&Butt_MASK) == Butt_MASK)
+//   31 #define CHK_Butt_SW1	((Butt_SW_PORT&Butt_SW1_BIT) == 0)
+//   32 #define CHK_Butt_SW2	((Butt_SW_PORT&Butt_SW2_BIT) == 0)
+//   33 
+//   34 // процедура опроса кнопок
+
+        RSEG CODE:CODE:NOROOT(1)
+//   35 void ChkKbrd(void)
+ChkKbrd:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function ChkKbrd
+//   36 {
+//   37   if(CHK_Butt_SW1){ /// SW1 кнопка нажата
+        LDI     R30, LOW(flags)
+        LDI     R31, (flags) >> 8
+        SBIC    0x13, 0x02
+        RJMP    ??ChkKbrd_0
+//   38      if(Countr_SW1 < 0xF0) Countr_SW1++;	
+        LDD     R16, Z+1
+        CPI     R16, 240
+        BRCC    ??ChkKbrd_0
+        INC     R16
+        STD     Z+1, R16
+//   39   }
+//   40   if(CHK_Butt_SW2){ /// SW2 кнопка нажата
+??ChkKbrd_0:
+        SBIC    0x13, 0x03
+        RJMP    ??ChkKbrd_1
+//   41      if(Countr_SW2 < 0xF0) Countr_SW2++;	
+        LDD     R16, Z+2
+        CPI     R16, 240
+        BRCC    ??ChkKbrd_1
+        INC     R16
+        STD     Z+2, R16
+//   42   }
+//   43   if(CHK_NOTPRS){
+??ChkKbrd_1:
+        IN      R16, 0x13
+        ANDI    R16, 0x0C
+        CPI     R16, 12
+        BRNE    ??ChkKbrd_2
+//   44 /// если не нажата ни одна кнопка
+//   45   	if(Countr_SW1){ /// было нажатие SW1
+        LDD     R16, Z+1
+        TST     R16
+        BREQ    ??ChkKbrd_3
+//   46 	     flags = 0;
+        LDI     R17, 0
+        ST      Z, R17
+//   47              if(Countr_SW1 >= LONGPRS){
+        CPI     R16, 140
+        BRCS    ??ChkKbrd_4
+//   48 		flags |= SW1_LONGPRS;
+        LDI     R16, 2
+        RJMP    ??ChkKbrd_5
+//   49 	     }
+//   50 	     else if(Countr_SW1 >= SHORTPRS){
+??ChkKbrd_4:
+        CPI     R16, 10
+        BRCS    ??ChkKbrd_6
+//   51 		flags |= SW1_SHORTPRS;
+        LDI     R16, 1
+??ChkKbrd_5:
+        ST      Z, R16
+//   52 	     }
+//   53 	     Countr_SW1 = 0;
+??ChkKbrd_6:
+        STD     Z+1, R17
+//   54   	}
+//   55   	if(Countr_SW2){ /// было нажатие SW2
+??ChkKbrd_3:
+        LDD     R16, Z+2
+        TST     R16
+        BREQ    ??ChkKbrd_2
+//   56              if(Countr_SW2 >= LONGPRS){
+        CPI     R16, 140
+        BRCS    ??ChkKbrd_7
+//   57 		flags |= SW2_LONGPRS;
+        LD      R16, Z
+        ORI     R16, 0x06
+        RJMP    ??ChkKbrd_8
+//   58 	     }
+//   59 	     else if(Countr_SW2 >= SHORTPRS){
+??ChkKbrd_7:
+        CPI     R16, 10
+        BRCS    ??ChkKbrd_9
+//   60 		flags |= SW2_SHORTPRS;
+        LD      R16, Z
+        ORI     R16, 0x04
+??ChkKbrd_8:
+        ST      Z, R16
+//   61 	     }
+//   62 	     Countr_SW2 = 0;
+??ChkKbrd_9:
+        LDI     R16, 0
+        STD     Z+2, R16
+//   63   	}
+//   64   }
+//   65 }
+??ChkKbrd_2:
+        RET
+        CFI EndBlock cfiBlock0
+//   66 //возвращает код нажатия кнопки
+//   67 //может быть короткое, длинное, не нажималось, замкнута,
+
+        RSEG CODE:CODE:NOROOT(1)
+//   68 u_char GetPrsCode(void)
+GetPrsCode:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function GetPrsCode
+//   69 {
+//   70 u_char temp;
+//   71 u_char res = 0;
+//   72    temp = SREG;
+        IN      R18, 0x3F
+//   73    _CLI();
+        CLI
+//   74    res = flags;
+        LDS     R16, flags
+//   75    flags = 0;
+        LDI     R17, 0
+        STS     flags, R17
+//   76    SREG = temp;
+        OUT     0x3F, R18
+//   77 
+//   78    if(res == 0){ // ничего не нажимали
+        TST     R16
+        BRNE    ??GetPrsCode_0
+//   79 	return 0;
+        LDI     R16, 0
+        RET
+//   80    }else if(res == SW1_SHORTPRS){ // короткое нажатие SW1
+??GetPrsCode_0:
+        CPI     R16, 1
+        BRNE    ??GetPrsCode_1
+//   81 	return LEFTSHORT;
+        LDI     R16, 1
+        RET
+//   82    }else if(res == SW1_LONGPRS){ // Длинное нажатие SW1
+??GetPrsCode_1:
+        CPI     R16, 2
+        BRNE    ??GetPrsCode_2
+//   83 	return LEFTLONG;
+        LDI     R16, 2
+        RET
+//   84    }else if(res == SW2_SHORTPRS){ // короткое нажатие SW2
+??GetPrsCode_2:
+        CPI     R16, 4
+        BRNE    ??GetPrsCode_3
+//   85 	return RIGHTSHORT;
+        LDI     R16, 3
+        RET
+//   86    }else if(res == SW2_LONGPRS){ // Длинное нажатие SW2
+??GetPrsCode_3:
+        CPI     R16, 6
+        BRNE    ??GetPrsCode_4
+//   87 	return RIGHTLONG;
+        LDI     R16, 4
+        RET
+//   88    }
+//   89    return TWOKEYPRS;
+??GetPrsCode_4:
+        LDI     R16, 5
+        RET
+        CFI EndBlock cfiBlock1
+//   90 }
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_Z>`:
+        DW      SFE(NEAR_Z) - SFB(NEAR_Z)
+        DW      SFB(NEAR_Z)
+        DW      0
+        REQUIRE ?need_segment_init
+
+        END
+//   91 
+// 
+//   2 bytes in segment ABSOLUTE
+// 160 bytes in segment CODE
+//   6 bytes in segment INITTAB
+//   3 bytes in segment NEAR_Z
+// 
+// 160 bytes of CODE memory (+ 6 bytes shared)
+//   3 bytes of DATA memory (+ 2 bytes shared)
+//
+//Errors: none
+//Warnings: none

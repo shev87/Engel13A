@@ -1,0 +1,273 @@
+##############################################################################
+#                                                                            #
+#                                                      10/Feb/2008  00:02:20 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Kbrd.c      #
+#    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Kbrd.c"     #
+#                    --cpu=m8 -ms -o "C:\Documents and                       #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Obj\" #
+#                     -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАМ #
+#                    МА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Li #
+#                    st\" -lA "C:\Documents and                              #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List\ #
+#                    " --initializers_in_flash -z9 --cross_call_passes=3     #
+#                    --debug -DENABLE_BIT_DEFINITIONS --do_cross_call -e -I  #
+#                    "C:\Program Files\IAR Systems\Embedded Workbench 4.0    #
+#                    Evaluation\avr\INC\" -I "C:\Program Files\IAR           #
+#                    Systems\Embedded Workbench 4.0                          #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List\ #
+#                    Kbrd.lst                                                #
+#    Object file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Obj\K #
+#                    brd.r90                                                 #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Kbrd.c
+      1          #include "Kbrd.h"
+
+   \                                 In segment ABSOLUTE, at 0x33
+   \   union <unnamed> volatile __io _A_PINC
+   \                     _A_PINC:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x5f
+   \   union <unnamed> volatile __io _A_SREG
+   \                     _A_SREG:
+   \   00000000                      DS 1
+      2          
+
+   \                                 In segment NEAR_Z, align 1, keep-with-next
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+      3          static u_char flags = 0;
+   \                     flags:
+   \   00000000                      DS 1
+   \   00000001                      DS 1
+   \   00000002                      DS 1
+      4          static u_char Countr_SW1 = 0;
+      5          static u_char Countr_SW2 = 0;
+      6          
+      7          #define SHORTPRS	10
+      8          #define LONGPRS		140
+      9          
+     10          #define SW1_SHORTPRS	0x01
+     11          #define SW1_LONGPRS	0x02
+     12          #define SW2_SHORTPRS	0x04
+     13          #define SW2_LONGPRS	0x06
+     14          
+     15          /// Ножка на которой прицеплена кнопка SW1
+     16          #define Butt_SW1_BIT 	(1<<PC2)
+     17          /// Ножка на которой прицеплена кнопка SW2
+     18          #define Butt_SW2_BIT 	(1<<PC3)
+     19          /// маска для кнопок
+     20          #define Butt_MASK     (Butt_SW2_BIT|Butt_SW1_BIT)
+     21          /// Порт на котором висит кнопка
+     22          #define Butt_SW_PORT 	PINC
+     23          
+     24          
+     25          
+     26          /// Отладка для работы
+     27          ///#define ButtBIT 	(1<<PD2)
+     28          ///#define ButtPORT 	PIND
+     29          
+     30          #define CHK_NOTPRS	((Butt_SW_PORT&Butt_MASK) == Butt_MASK)
+     31          #define CHK_Butt_SW1	((Butt_SW_PORT&Butt_SW1_BIT) == 0)
+     32          #define CHK_Butt_SW2	((Butt_SW_PORT&Butt_SW2_BIT) == 0)
+     33          
+     34          // процедура опроса кнопок
+
+   \                                 In segment CODE, align 2, keep-with-next
+     35          void ChkKbrd(void)
+   \                     ChkKbrd:
+     36          {
+     37            if(CHK_Butt_SW1){ /// SW1 кнопка нажата
+   \   00000000   ....               LDI     R30, LOW(flags)
+   \   00000002   ....               LDI     R31, (flags) >> 8
+   \   00000004   999A               SBIC    0x13, 0x02
+   \   00000006   C005               RJMP    ??ChkKbrd_0
+     38               if(Countr_SW1 < 0xF0) Countr_SW1++;	
+   \   00000008   8101               LDD     R16, Z+1
+   \   0000000A   3F00               CPI     R16, 240
+   \   0000000C   F410               BRCC    ??ChkKbrd_0
+   \   0000000E   9503               INC     R16
+   \   00000010   8301               STD     Z+1, R16
+     39            }
+     40            if(CHK_Butt_SW2){ /// SW2 кнопка нажата
+   \                     ??ChkKbrd_0:
+   \   00000012   999B               SBIC    0x13, 0x03
+   \   00000014   C005               RJMP    ??ChkKbrd_1
+     41               if(Countr_SW2 < 0xF0) Countr_SW2++;	
+   \   00000016   8102               LDD     R16, Z+2
+   \   00000018   3F00               CPI     R16, 240
+   \   0000001A   F410               BRCC    ??ChkKbrd_1
+   \   0000001C   9503               INC     R16
+   \   0000001E   8302               STD     Z+2, R16
+     42            }
+     43            if(CHK_NOTPRS){
+   \                     ??ChkKbrd_1:
+   \   00000020   B303               IN      R16, 0x13
+   \   00000022   700C               ANDI    R16, 0x0C
+   \   00000024   300C               CPI     R16, 12
+   \   00000026   F4E9               BRNE    ??ChkKbrd_2
+     44          /// если не нажата ни одна кнопка
+     45            	if(Countr_SW1){ /// было нажатие SW1
+   \   00000028   8101               LDD     R16, Z+1
+   \   0000002A   2300               TST     R16
+   \   0000002C   F059               BREQ    ??ChkKbrd_3
+     46          	     flags = 0;
+   \   0000002E   E010               LDI     R17, 0
+   \   00000030   8310               ST      Z, R17
+     47                       if(Countr_SW1 >= LONGPRS){
+   \   00000032   380C               CPI     R16, 140
+   \   00000034   F010               BRCS    ??ChkKbrd_4
+     48          		flags |= SW1_LONGPRS;
+   \   00000036   E002               LDI     R16, 2
+   \   00000038   C003               RJMP    ??ChkKbrd_5
+     49          	     }
+     50          	     else if(Countr_SW1 >= SHORTPRS){
+   \                     ??ChkKbrd_4:
+   \   0000003A   300A               CPI     R16, 10
+   \   0000003C   F010               BRCS    ??ChkKbrd_6
+     51          		flags |= SW1_SHORTPRS;
+   \   0000003E   E001               LDI     R16, 1
+   \                     ??ChkKbrd_5:
+   \   00000040   8300               ST      Z, R16
+     52          	     }
+     53          	     Countr_SW1 = 0;
+   \                     ??ChkKbrd_6:
+   \   00000042   8311               STD     Z+1, R17
+     54            	}
+     55            	if(Countr_SW2){ /// было нажатие SW2
+   \                     ??ChkKbrd_3:
+   \   00000044   8102               LDD     R16, Z+2
+   \   00000046   2300               TST     R16
+   \   00000048   F061               BREQ    ??ChkKbrd_2
+     56                       if(Countr_SW2 >= LONGPRS){
+   \   0000004A   380C               CPI     R16, 140
+   \   0000004C   F018               BRCS    ??ChkKbrd_7
+     57          		flags |= SW2_LONGPRS;
+   \   0000004E   8100               LD      R16, Z
+   \   00000050   6006               ORI     R16, 0x06
+   \   00000052   C004               RJMP    ??ChkKbrd_8
+     58          	     }
+     59          	     else if(Countr_SW2 >= SHORTPRS){
+   \                     ??ChkKbrd_7:
+   \   00000054   300A               CPI     R16, 10
+   \   00000056   F018               BRCS    ??ChkKbrd_9
+     60          		flags |= SW2_SHORTPRS;
+   \   00000058   8100               LD      R16, Z
+   \   0000005A   6004               ORI     R16, 0x04
+   \                     ??ChkKbrd_8:
+   \   0000005C   8300               ST      Z, R16
+     61          	     }
+     62          	     Countr_SW2 = 0;
+   \                     ??ChkKbrd_9:
+   \   0000005E   E000               LDI     R16, 0
+   \   00000060   8302               STD     Z+2, R16
+     63            	}
+     64            }
+     65          }
+   \                     ??ChkKbrd_2:
+   \   00000062   9508               RET
+     66          //возвращает код нажатия кнопки
+     67          //может быть короткое, длинное, не нажималось, замкнута,
+
+   \                                 In segment CODE, align 2, keep-with-next
+     68          u_char GetPrsCode(void)
+   \                     GetPrsCode:
+     69          {
+     70          u_char temp;
+     71          u_char res = 0;
+     72             temp = SREG;
+   \   00000000   B72F               IN      R18, 0x3F
+     73             _CLI();
+   \   00000002   94F8               CLI
+     74             res = flags;
+   \   00000004   9100....           LDS     R16, flags
+     75             flags = 0;
+   \   00000008   E010               LDI     R17, 0
+   \   0000000A   9310....           STS     flags, R17
+     76             SREG = temp;
+   \   0000000E   BF2F               OUT     0x3F, R18
+     77          
+     78             if(res == 0){ // ничего не нажимали
+   \   00000010   2300               TST     R16
+   \   00000012   F411               BRNE    ??GetPrsCode_0
+     79          	return 0;
+   \   00000014   E000               LDI     R16, 0
+   \   00000016   9508               RET
+     80             }else if(res == SW1_SHORTPRS){ // короткое нажатие SW1
+   \                     ??GetPrsCode_0:
+   \   00000018   3001               CPI     R16, 1
+   \   0000001A   F411               BRNE    ??GetPrsCode_1
+     81          	return LEFTSHORT;
+   \   0000001C   E001               LDI     R16, 1
+   \   0000001E   9508               RET
+     82             }else if(res == SW1_LONGPRS){ // Длинное нажатие SW1
+   \                     ??GetPrsCode_1:
+   \   00000020   3002               CPI     R16, 2
+   \   00000022   F411               BRNE    ??GetPrsCode_2
+     83          	return LEFTLONG;
+   \   00000024   E002               LDI     R16, 2
+   \   00000026   9508               RET
+     84             }else if(res == SW2_SHORTPRS){ // короткое нажатие SW2
+   \                     ??GetPrsCode_2:
+   \   00000028   3004               CPI     R16, 4
+   \   0000002A   F411               BRNE    ??GetPrsCode_3
+     85          	return RIGHTSHORT;
+   \   0000002C   E003               LDI     R16, 3
+   \   0000002E   9508               RET
+     86             }else if(res == SW2_LONGPRS){ // Длинное нажатие SW2
+   \                     ??GetPrsCode_3:
+   \   00000030   3006               CPI     R16, 6
+   \   00000032   F411               BRNE    ??GetPrsCode_4
+     87          	return RIGHTLONG;
+   \   00000034   E004               LDI     R16, 4
+   \   00000036   9508               RET
+     88             }
+     89             return TWOKEYPRS;
+   \                     ??GetPrsCode_4:
+   \   00000038   E005               LDI     R16, 5
+   \   0000003A   9508               RET
+     90          }
+     91          
+
+   Maximum stack usage in bytes:
+
+     Function   CSTACK RSTACK
+     --------   ------ ------
+     ChkKbrd        0      2
+     GetPrsCode     0      2
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     _A_PINC           1
+     _A_SREG           1
+     flags             3
+     ChkKbrd         100
+     GetPrsCode       60
+      Others           6
+
+ 
+   2 bytes in segment ABSOLUTE
+ 160 bytes in segment CODE
+   6 bytes in segment INITTAB
+   3 bytes in segment NEAR_Z
+ 
+ 160 bytes of CODE memory (+ 6 bytes shared)
+   3 bytes of DATA memory (+ 2 bytes shared)
+
+Errors: none
+Warnings: none

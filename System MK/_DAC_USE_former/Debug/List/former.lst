@@ -1,0 +1,212 @@
+##############################################################################
+#                                                                            #
+#                                                      21/Mar/2008  22:47:26 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\former.c       #
+#    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\former.c"      #
+#                    --cpu=m8 -mt -o "C:\Documents and                       #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\Obj\"    #
+#                    -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММ #
+#                    А ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List\" #
+#                     -lA "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАМ #
+#                    МА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List\ #
+#                    " --initializers_in_flash -z9 --cross_call_passes=3     #
+#                    --debug -DENABLE_BIT_DEFINITIONS -e -I "C:\Program      #
+#                    Files\IAR Systems\Embedded Workbench 4.0                #
+#                    Evaluation\avr\INC\" -I "C:\Program Files\IAR           #
+#                    Systems\Embedded Workbench 4.0                          #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List\for #
+#                    mer.lst                                                 #
+#    Object file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\Obj\form #
+#                    er.r90                                                  #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\former.c
+      1          #include "former.h"
+
+   \                                 In segment ABSOLUTE, at 0x31
+   \   union <unnamed> volatile __io _A_DDRD
+   \                     _A_DDRD:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x32
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x37
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x38
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS 1
+      2          
+      3          #define CLK_MASK  (_CLK_bit|inv_CLK_bit)
+      4          
+      5          /// настройка формирователя
+
+   \                                 In segment CODE, align 2, keep-with-next
+      6          void Init_Pulse_FORMER(void)
+   \                     Init_Pulse_FORMER:
+      7          {
+      8            PORTD &= ~inv_CLK_bit; 
+   \   00000000   9896               CBI     0x12, 0x06
+      9            DDRD |= (_CS_bit|inv_CLK_bit|_CLK_bit);
+   \   00000002   B301               IN      R16, 0x11
+   \   00000004   6E00               ORI     R16, 0xE0
+   \   00000006   BB01               OUT     0x11, R16
+     10            DDRB |= (_DATA_bit);
+   \   00000008   9AB8               SBI     0x17, 0x00
+     11          }
+   \   0000000A   9508               RET
+     12          
+     13          
+     14          /// формирователь одного периода сигнала CLK /-\_
+
+   \                                 In segment CODE, align 2, keep-with-next
+     15          void CLK_SIGNAL(void)
+   \                     CLK_SIGNAL:
+     16          {
+     17           char tmp;
+     18            tmp = ~PORTD;             /// инвертируем значение PORTD     
+   \   00000000   ....               RCALL   ?Subroutine0
+     19            tmp &= CLK_MASK; 	    /// выделим два нужных бита
+     20            tmp |= PORTD&(~CLK_MASK); /// остальные биты не изменяем 
+     21            PORTD = tmp;              /// переписываем значение PORTD 
+     22            __delay_cycles(Time_HIGH);
+     23            tmp = ~PORTD;             /// инвертируем значение PORTD     
+   \                     ??CrossCallReturnLabel_0:
+   \   00000002                      REQUIRE ?Subroutine0
+   \   00000002                      ;               // Fall through to label ?Subroutine0
+     24            tmp &= CLK_MASK; 	    /// выделим два нужных бита
+     25            tmp |= PORTD&(~CLK_MASK); /// остальные биты не изменяем 
+     26            PORTD = tmp;              /// переписываем значение PORTD 
+     27            __delay_cycles(Time_LOW);
+     28          }
+
+   \                                 In segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   B302               IN      R16, 0x12
+   \   00000002   9500               COM     R16
+   \   00000004   7600               ANDI    R16, 0x60
+   \   00000006   2F10               MOV     R17, R16
+   \   00000008   B302               IN      R16, 0x12
+   \   0000000A   790F               ANDI    R16, 0x9F
+   \   0000000C   2B01               OR      R16, R17
+   \   0000000E   BB02               OUT     0x12, R16
+   \   00000010   E201               LDI     R16, 33
+   \   00000012   950A               DEC     R16
+   \   00000014   F7F1               BRNE    $-2
+   \   00000016   0000               NOP
+   \   00000018   9508               RET
+     29          
+     30          /// Формирователь данные и clk до 16 тактовых импульсов
+
+   \                                 In segment CODE, align 2, keep-with-next
+     31          void Pulse_FORMER(int DATA)
+   \                     Pulse_FORMER:
+     32          {
+   \   00000000   ....               RCALL   ?PROLOGUE5_L09
+   \   00000002                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000002   01C8               MOVW    R25:R24, R17:R16
+     33          char CLK_countr = 0;
+     34          int MASK = 1;
+   \   00000004   E0A1               LDI     R26, 1
+   \   00000006   E0B0               LDI     R27, 0
+     35          
+     36            /// делаем предустановку сигнала CLK 
+     37            /// PD5 = 1 PD6 = 0;
+     38            PORTD &= ~CLK_MASK;
+   \   00000008   B302               IN      R16, 0x12
+   \   0000000A   790F               ANDI    R16, 0x9F
+   \   0000000C   BB02               OUT     0x12, R16
+     39            PORTD |= _CLK_bit;  
+   \   0000000E   9A95               SBI     0x12, 0x05
+     40           
+     41            CLR_CS;  /// начало - CS = 0
+   \   00000010   9897               CBI     0x12, 0x07
+   \   00000012   E00C               LDI     R16, 12
+   \   00000014   2E40               MOV     R4, R16
+     42          
+     43            while(1){/// в цикле на количество тактовых импульсов
+     44                /// установим или сбросим бит данных
+     45                if( MASK&DATA ){
+   \                     ??Pulse_FORMER_0:
+   \   00000016   018C               MOVW    R17:R16, R25:R24
+   \   00000018   230A               AND     R16, R26
+   \   0000001A   231B               AND     R17, R27
+   \   0000001C   2B01               OR      R16, R17
+   \   0000001E   F011               BREQ    ??Pulse_FORMER_1
+     46                    SET_DATA; /// бит данных равен 1 
+   \   00000020   9AC0               SBI     0x18, 0x00
+   \   00000022   C001               RJMP    ??Pulse_FORMER_2
+     47                }else{
+     48                    CLR_DATA; /// бит данных равен 0  
+   \                     ??Pulse_FORMER_1:
+   \   00000024   98C0               CBI     0x18, 0x00
+     49                } 
+     50                /// формируем сигнал CLK
+     51                CLK_SIGNAL();/// формирователь одного периода сигнала CLK /-\_
+   \                     ??Pulse_FORMER_2:
+   \   00000026   ....               RCALL   CLK_SIGNAL
+     52                MASK <<= 1;
+   \   00000028   0FAA               LSL     R26
+   \   0000002A   1FBB               ROL     R27
+     53                CLK_countr++;
+     54                if(CLK_countr == NUM_CLK_PULSES)
+   \   0000002C   944A               DEC     R4
+   \   0000002E   F799               BRNE    ??Pulse_FORMER_0
+     55                   break;
+     56            } /// конец цикла
+     57          
+     58            SET_CS; /// завершим - CS = 1
+   \   00000030   9A97               SBI     0x12, 0x07
+     59          }
+   \   00000032   E0E5               LDI     R30, 5
+   \   00000034   ....               RJMP    ?EPILOGUE_B5_L09
+
+   Maximum stack usage in bytes:
+
+     Function          CSTACK RSTACK
+     --------          ------ ------
+     CLK_SIGNAL            0      2
+     Init_Pulse_FORMER     0      2
+     Pulse_FORMER          5      2
+       -> CLK_SIGNAL       5      2
+
+
+   Segment part sizes:
+
+     Function/Label    Bytes
+     --------------    -----
+     _A_DDRD              1
+     _A_PORTD             1
+     _A_DDRB              1
+     _A_PORTB             1
+     Init_Pulse_FORMER   12
+     CLK_SIGNAL           2
+     ?Subroutine0        26
+     Pulse_FORMER        54
+
+ 
+  4 bytes in segment ABSOLUTE
+ 94 bytes in segment CODE
+ 
+ 94 bytes of CODE memory
+  0 bytes of DATA memory (+ 4 bytes shared)
+
+Errors: none
+Warnings: none

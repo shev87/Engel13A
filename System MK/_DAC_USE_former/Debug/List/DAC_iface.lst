@@ -1,0 +1,151 @@
+##############################################################################
+#                                                                            #
+#                                                      13/May/2008  22:26:46 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_œ–√–¿ÃÃ¿     #
+#                    »Õ—“»“”“\LABORATOR_WORKS\_DAC_USE_former\DAC_iface.c    #
+#    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_œ–√–¿ÃÃ¿    #
+#                    »Õ—“»“”“\LABORATOR_WORKS\_DAC_USE_former\DAC_iface.c"   #
+#                    --cpu=m8 -mt -o "C:\Documents and                       #
+#                    Settings\Serg\SERG_DOCUM\_œ–√–¿ÃÃ¿                      #
+#                    »Õ—“»“”“\LABORATOR_WORKS\_DAC_USE_former\Debug\Obj\"    #
+#                    -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_œ–√–¿ÃÃ #
+#                    ¿ »Õ—“»“”“\LABORATOR_WORKS\_DAC_USE_former\Debug\List\" #
+#                     -lA "C:\Documents and Settings\Serg\SERG_DOCUM\_œ–√–¿Ã #
+#                    Ã¿ »Õ—“»“”“\LABORATOR_WORKS\_DAC_USE_former\Debug\List\ #
+#                    " --initializers_in_flash -z9 --cross_call_passes=3     #
+#                    --debug -DENABLE_BIT_DEFINITIONS -e -I "C:\Program      #
+#                    Files\IAR Systems\Embedded Workbench 4.0                #
+#                    Evaluation\avr\INC\" -I "C:\Program Files\IAR           #
+#                    Systems\Embedded Workbench 4.0                          #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_œ–√–¿ÃÃ¿     #
+#                    »Õ—“»“”“\LABORATOR_WORKS\_DAC_USE_former\Debug\List\DAC #
+#                    _iface.lst                                              #
+#    Object file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_œ–√–¿ÃÃ¿     #
+#                    »Õ—“»“”“\LABORATOR_WORKS\_DAC_USE_former\Debug\Obj\DAC_ #
+#                    iface.r90                                               #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Documents and Settings\Serg\SERG_DOCUM\_œ–√–¿ÃÃ¿ »Õ—“»“”“\LABORATOR_WORKS\_DAC_USE_former\DAC_iface.c
+      1          #include "DAC_iface.h"
+
+   \                                 In segment ABSOLUTE, at 0x32
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x37
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x38
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS 1
+      2          
+      3          /// Ì‡ÒÚÓÈÍ‡ ËÌÚÂÙÂÈÒ‡ ‰Îˇ ‡·ÓÚ˚ Ò ÷¿œ
+
+   \                                 In segment CODE, align 2, keep-with-next
+      4          void Init_DAC_Iface(void)
+   \                     Init_DAC_Iface:
+      5          {
+      6            DDRB = (_LOAD_bit|_CS_bit|_SDI_bit|_CLK_bit);
+   \   00000000   E20C               LDI     R16, 44
+   \   00000002   BB07               OUT     0x17, R16
+      7          }
+   \   00000004   9508               RET
+      8          
+      9          
+     10          /// ÙÓÏËÓ‚‡ÚÂÎ¸ Ó‰ÌÓ„Ó ÔÂËÓ‰‡ ÒË„Ì‡Î‡ CLK _/-
+
+   \                                 In segment CODE, align 2, keep-with-next
+     11          void CLK_SIGNAL(void)
+   \                     CLK_SIGNAL:
+     12          {
+     13            PORTB &= ~_CLK_bit;
+   \   00000000   98C5               CBI     0x18, 0x05
+     14            PORTB |= _CLK_bit;
+   \   00000002   9AC5               SBI     0x18, 0x05
+     15          }
+   \   00000004   9508               RET
+     16          
+     17          /// Á‡ÔËÒ¸ ‰‡ÌÌ˚ı ‚ ÷¿œ DAC7611
+
+   \                                 In segment CODE, align 2, keep-with-next
+     18          void DAC_Write(int DATA)
+   \                     DAC_Write:
+     19          {
+   \   00000000   939A               ST      -Y, R25
+   \   00000002   2F91               MOV     R25, R17
+     20          int MASK = 0x0800;
+     21          
+     22            CLR_CS;  /// Ì‡˜‡ÎÓ - CS = 0
+   \   00000004   9892               CBI     0x12, 0x02
+   \   00000006   C002               RJMP    ??DAC_Write_0
+     23          
+     24            while(1){/// ‚ ˆËÍÎÂ Ì‡ ÍÓÎË˜ÂÒÚ‚Ó Ú‡ÍÚÓ‚˚ı ËÏÔÛÎ¸ÒÓ‚
+     25                /// ÛÒÚ‡ÌÓ‚ËÏ ËÎË Ò·ÓÒËÏ ·ËÚ ‰‡ÌÌ˚ı
+     26                if( MASK&DATA ){
+     27                    SET_SDI; /// ·ËÚ ‰‡ÌÌ˚ı ‡‚ÂÌ 1
+     28                }else{
+     29                    CLR_SDI; /// ·ËÚ ‰‡ÌÌ˚ı ‡‚ÂÌ 0
+   \                     ??DAC_Write_1:
+   \   00000008   98C3               CBI     0x18, 0x03
+     30                }
+     31                /// ÙÓÏËÛÂÏ ÒË„Ì‡Î CLK
+     32                CLK_SIGNAL();/// ÙÓÏËÓ‚‡ÚÂÎ¸ Ó‰ÌÓ„Ó ÔÂËÓ‰‡ ÒË„Ì‡Î‡ CLK \_/-\
+   \                     ??DAC_Write_2:
+   \   0000000A   ....               RCALL   CLK_SIGNAL
+     33                MASK >>= 1;
+     34                if(MASK == 0)
+   \                     ??DAC_Write_0:
+   \   0000000C   FB93               BST     R25, 3
+   \   0000000E   F7E6               BRTC    ??DAC_Write_1
+   \   00000010   9AC3               SBI     0x18, 0x03
+   \   00000012   CFFB               RJMP    ??DAC_Write_2
+     35                   break;
+     36            } /// ÍÓÌÂˆ ˆËÍÎ‡
+     37          
+     38            SET_CS; /// Á‡‚Â¯ËÏ - CS = 1
+     39          
+     40            /// ÒÙÓÏËÛÂÏ ÒË„Ì‡Î LD ‚ DAC7611
+     41            CLR_LOAD;
+     42            SET_LOAD;
+     43          }
+
+   Maximum stack usage in bytes:
+
+     Function        CSTACK RSTACK
+     --------        ------ ------
+     CLK_SIGNAL          0      2
+     DAC_Write           2      2
+       -> CLK_SIGNAL     2      2
+     Init_DAC_Iface      0      2
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     _A_PORTD          1
+     _A_DDRB           1
+     _A_PORTB          1
+     Init_DAC_Iface    6
+     CLK_SIGNAL        6
+     DAC_Write        20
+
+ 
+  3 bytes in segment ABSOLUTE
+ 32 bytes in segment CODE
+ 
+ 32 bytes of CODE memory
+  0 bytes of DATA memory (+ 3 bytes shared)
+
+Errors: none
+Warnings: none

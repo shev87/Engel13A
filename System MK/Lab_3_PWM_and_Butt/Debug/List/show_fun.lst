@@ -1,0 +1,166 @@
+##############################################################################
+#                                                                            #
+#                                                      10/Feb/2008  00:02:21 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\show_fun.c  #
+#    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\show_fun.c" #
+#                     --cpu=m8 -ms -o "C:\Documents and                      #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Obj\" #
+#                     -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАМ #
+#                    МА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Li #
+#                    st\" -lA "C:\Documents and                              #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List\ #
+#                    " --initializers_in_flash -z9 --cross_call_passes=3     #
+#                    --debug -DENABLE_BIT_DEFINITIONS --do_cross_call -e -I  #
+#                    "C:\Program Files\IAR Systems\Embedded Workbench 4.0    #
+#                    Evaluation\avr\INC\" -I "C:\Program Files\IAR           #
+#                    Systems\Embedded Workbench 4.0                          #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List\ #
+#                    show_fun.lst                                            #
+#    Object file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Obj\s #
+#                    how_fun.r90                                             #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\show_fun.c
+      1          #include "SHow_FUN.h"
+
+   \                                 In segment ABSOLUTE, at 0x37
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x38
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS 1
+      2          
+      3          
+      4          ///// определимся сфункциями
+      5          //// настройка
+      6           /// готовит порт для индикации результата на
+
+   \                                 In segment CODE, align 2, keep-with-next
+      7          void show_init(void)
+   \                     show_init:
+      8          {
+      9            PORT_INI_SHOW  |= (1<<PIN_SHOW);   // настроили порт
+   \   00000000   9AB8               SBI     0x17, 0x00
+     10            PORT_SHOW      |= (1<<PIN_SHOW);  // бит равен 1
+   \   00000002                      REQUIRE ?Subroutine0
+   \   00000002                      ;               // Fall through to label ?Subroutine0
+     11          }
+
+   \                                 In segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   9AC0               SBI     0x18, 0x00
+   \   00000002   9508               RET
+     12          
+     13          //// ф. выводит на вывод значение измеренное АЦП
+     14          //// что бы посмотреть его Осциллографом
+
+   \                                 In segment CODE, align 2, keep-with-next
+     15          void show_result( unsigned int VAL)
+   \                     show_result:
+     16          {
+     17           char ctmp;
+     18           unsigned int MASK = 0x01;
+   \   00000000   E021               LDI     R18, 1
+   \   00000002   E030               LDI     R19, 0
+     19            ctmp = 0xF;
+     20            //// выводим синхробит бит равен 0
+     21            PORT_SHOW |= (1<<PIN_SHOW);
+   \   00000004   9AC0               SBI     0x18, 0x00
+   \   00000006   E04F               LDI     R20, 15
+   \   00000008   C001               RJMP    ??show_result_0
+     22            while(--ctmp){
+     23               _NOP();
+   \                     ??show_result_1:
+   \   0000000A   0000               NOP
+     24            }
+   \                     ??show_result_0:
+   \   0000000C   954A               DEC     R20
+   \   0000000E   F7E9               BRNE    ??show_result_1
+     25            //// выводим начинаем с младшего бита 10 бит
+     26            ctmp = 10;
+   \   00000010   E05A               LDI     R21, 10
+     27            do{
+     28               /////делаем опорные точки чтобы увидеть бит
+     29               PORT_SHOW |= (1<<PIN_SHOW);
+   \                     ??show_result_2:
+   \   00000012   9AC0               SBI     0x18, 0x00
+     30               PORT_SHOW &= ~(1<<PIN_SHOW); // бит равен 0
+   \   00000014   98C0               CBI     0x18, 0x00
+     31          
+     32               if(VAL&MASK){//// бит равен 1
+   \   00000016   01B9               MOVW    R23:R22, R19:R18
+   \   00000018   2360               AND     R22, R16
+   \   0000001A   2371               AND     R23, R17
+   \   0000001C   2B67               OR      R22, R23
+   \   0000001E   F011               BREQ    ??show_result_3
+     33                  PORT_SHOW |= (1<<PIN_SHOW);
+   \   00000020   9AC0               SBI     0x18, 0x00
+   \   00000022   C001               RJMP    ??show_result_4
+     34               }else{ //// бит равен 0
+     35                  PORT_SHOW &= ~(1<<PIN_SHOW); // бит равен 0
+   \                     ??show_result_3:
+   \   00000024   98C0               CBI     0x18, 0x00
+     36               }
+     37               ////  пауза
+     38               _NOP();
+   \                     ??show_result_4:
+   \   00000026   0000               NOP
+     39               _NOP();
+   \   00000028   0000               NOP
+     40               _NOP();
+   \   0000002A   0000               NOP
+     41               /// передвигаем Маску
+     42               MASK <<= 1;
+   \   0000002C   0F22               LSL     R18
+   \   0000002E   1F33               ROL     R19
+     43            }while(ctmp--);
+   \   00000030   2F45               MOV     R20, R21
+   \   00000032   955A               DEC     R21
+   \   00000034   2344               TST     R20
+   \   00000036   F769               BRNE    ??show_result_2
+     44           PORT_SHOW |= (1<<PIN_SHOW); // бит равен 1
+   \   00000038   ....               RJMP    ?Subroutine0
+     45          }
+
+   Maximum stack usage in bytes:
+
+     Function    CSTACK RSTACK
+     --------    ------ ------
+     show_init       0      2
+     show_result     0      2
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     _A_DDRB           1
+     _A_PORTB          1
+     show_init         2
+     ?Subroutine0      4
+     show_result      58
+
+ 
+  2 bytes in segment ABSOLUTE
+ 64 bytes in segment CODE
+ 
+ 64 bytes of CODE memory
+  0 bytes of DATA memory (+ 2 bytes shared)
+
+Errors: none
+Warnings: none

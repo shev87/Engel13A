@@ -1,0 +1,375 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+//                                                     21/Mar/2008  22:47:26 /
+// IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version               /
+// Copyright 1996-2006 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\former.c      /
+//    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА   /
+//                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\former.c"     /
+//                    --cpu=m8 -mt -o "C:\Documents and                      /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\Obj\"   /
+//                    -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАМ /
+//                    МА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List /
+//                    \" -lA "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГ /
+//                    РАММА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\L /
+//                    ist\" --initializers_in_flash -z9                      /
+//                    --cross_call_passes=3 --debug                          /
+//                    -DENABLE_BIT_DEFINITIONS -e -I "C:\Program Files\IAR   /
+//                    Systems\Embedded Workbench 4.0 Evaluation\avr\INC\"    /
+//                    -I "C:\Program Files\IAR Systems\Embedded Workbench    /
+//                    4.0 Evaluation\avr\INC\CLIB\" --eeprom_size 512        /
+//    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\Debug\List\fo /
+//                    rmer.s90                                               /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME former
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "1"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        EXTERN ?EPILOGUE_B5_L09
+        EXTERN ?PROLOGUE5_L09
+        EXTERN ?Register_R4_is_cg_reg
+
+        PUBLIC CLK_SIGNAL
+        FUNCTION CLK_SIGNAL,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC Init_Pulse_FORMER
+        FUNCTION Init_Pulse_FORMER,0203H
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC Pulse_FORMER
+        FUNCTION Pulse_FORMER,021203H
+        LOCFRAME CSTACK, 5, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTD
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_Y Y DATA
+        CFI StackFrame CFA_SP SP DATA
+        CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+        CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+        CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+        CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+        CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+        CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+        CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+        CFI ResourceParts SP SPH, SPL
+        CFI ResourceParts Y R29, R28
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 Undefined
+        CFI R17 Undefined
+        CFI R18 Undefined
+        CFI R19 Undefined
+        CFI R20 Undefined
+        CFI R21 Undefined
+        CFI R22 Undefined
+        CFI R23 Undefined
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 Undefined
+        CFI R31 Undefined
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Notused
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 SameValue
+        CFI R17 SameValue
+        CFI R18 SameValue
+        CFI R19 SameValue
+        CFI R20 SameValue
+        CFI R21 SameValue
+        CFI R22 SameValue
+        CFI R23 SameValue
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 SameValue
+        CFI R31 SameValue
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI Y SameValue
+        CFI EndCommon cfiCommon1
+        
+// C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\_DAC_USE_former\former.c
+//    1 #include "former.h"
+
+        ASEGN ABSOLUTE:DATA:NOROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS 1
+//    2 
+//    3 #define CLK_MASK  (_CLK_bit|inv_CLK_bit)
+//    4 
+//    5 /// настройка формирователя
+
+        RSEG CODE:CODE:NOROOT(1)
+//    6 void Init_Pulse_FORMER(void)
+Init_Pulse_FORMER:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function Init_Pulse_FORMER
+//    7 {
+//    8   PORTD &= ~inv_CLK_bit; 
+        CBI     0x12, 0x06
+//    9   DDRD |= (_CS_bit|inv_CLK_bit|_CLK_bit);
+        IN      R16, 0x11
+        ORI     R16, 0xE0
+        OUT     0x11, R16
+//   10   DDRB |= (_DATA_bit);
+        SBI     0x17, 0x00
+//   11 }
+        RET
+        CFI EndBlock cfiBlock0
+//   12 
+//   13 
+//   14 /// формирователь одного периода сигнала CLK /-\_
+
+        RSEG CODE:CODE:NOROOT(1)
+//   15 void CLK_SIGNAL(void)
+CLK_SIGNAL:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function CLK_SIGNAL
+//   16 {
+//   17  char tmp;
+//   18   tmp = ~PORTD;             /// инвертируем значение PORTD     
+        RCALL   ?Subroutine0
+        CFI EndBlock cfiBlock1
+//   19   tmp &= CLK_MASK; 	    /// выделим два нужных бита
+//   20   tmp |= PORTD&(~CLK_MASK); /// остальные биты не изменяем 
+//   21   PORTD = tmp;              /// переписываем значение PORTD 
+//   22   __delay_cycles(Time_HIGH);
+//   23   tmp = ~PORTD;             /// инвертируем значение PORTD     
+??CrossCallReturnLabel_0:
+        REQUIRE ?Subroutine0
+        ;               // Fall through to label ?Subroutine0
+//   24   tmp &= CLK_MASK; 	    /// выделим два нужных бита
+//   25   tmp |= PORTD&(~CLK_MASK); /// остальные биты не изменяем 
+//   26   PORTD = tmp;              /// переписываем значение PORTD 
+//   27   __delay_cycles(Time_LOW);
+//   28 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        CFI Block cfiCond2 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI CFA_SP SP+4
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI (cfiBlock3) NoFunction
+        CFI Block cfiPicker4 Using cfiCommon1
+        CFI (cfiPicker4) NoFunction
+        CFI (cfiPicker4) Picker
+        IN      R16, 0x12
+        COM     R16
+        ANDI    R16, 0x60
+        MOV     R17, R16
+        IN      R16, 0x12
+        ANDI    R16, 0x9F
+        OR      R16, R17
+        OUT     0x12, R16
+        LDI     R16, 33
+        DEC     R16
+        BRNE    $-2
+        NOP
+        RET
+        CFI EndBlock cfiCond2
+        CFI EndBlock cfiBlock3
+        CFI EndBlock cfiPicker4
+//   29 
+//   30 /// Формирователь данные и clk до 16 тактовых импульсов
+
+        RSEG CODE:CODE:NOROOT(1)
+//   31 void Pulse_FORMER(int DATA)
+Pulse_FORMER:
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI Function Pulse_FORMER
+//   32 {
+        FUNCALL Pulse_FORMER, CLK_SIGNAL
+        LOCFRAME CSTACK, 5, STACK
+        LOCFRAME RSTACK, 2, STACK
+        RCALL   ?PROLOGUE5_L09
+        CFI R4 Frame(CFA_Y, -1)
+        CFI R27 Frame(CFA_Y, -2)
+        CFI R26 Frame(CFA_Y, -3)
+        CFI R25 Frame(CFA_Y, -4)
+        CFI R24 Frame(CFA_Y, -5)
+        CFI CFA_Y Y+5
+        REQUIRE ?Register_R4_is_cg_reg
+        MOVW    R25:R24, R17:R16
+//   33 char CLK_countr = 0;
+//   34 int MASK = 1;
+        LDI     R26, 1
+        LDI     R27, 0
+//   35 
+//   36   /// делаем предустановку сигнала CLK 
+//   37   /// PD5 = 1 PD6 = 0;
+//   38   PORTD &= ~CLK_MASK;
+        IN      R16, 0x12
+        ANDI    R16, 0x9F
+        OUT     0x12, R16
+//   39   PORTD |= _CLK_bit;  
+        SBI     0x12, 0x05
+//   40  
+//   41   CLR_CS;  /// начало - CS = 0
+        CBI     0x12, 0x07
+        LDI     R16, 12
+        MOV     R4, R16
+//   42 
+//   43   while(1){/// в цикле на количество тактовых импульсов
+//   44       /// установим или сбросим бит данных
+//   45       if( MASK&DATA ){
+??Pulse_FORMER_0:
+        MOVW    R17:R16, R25:R24
+        AND     R16, R26
+        AND     R17, R27
+        OR      R16, R17
+        BREQ    ??Pulse_FORMER_1
+//   46           SET_DATA; /// бит данных равен 1 
+        SBI     0x18, 0x00
+        RJMP    ??Pulse_FORMER_2
+//   47       }else{
+//   48           CLR_DATA; /// бит данных равен 0  
+??Pulse_FORMER_1:
+        CBI     0x18, 0x00
+//   49       } 
+//   50       /// формируем сигнал CLK
+//   51       CLK_SIGNAL();/// формирователь одного периода сигнала CLK /-\_
+??Pulse_FORMER_2:
+        RCALL   CLK_SIGNAL
+//   52       MASK <<= 1;
+        LSL     R26
+        ROL     R27
+//   53       CLK_countr++;
+//   54       if(CLK_countr == NUM_CLK_PULSES)
+        DEC     R4
+        BRNE    ??Pulse_FORMER_0
+//   55          break;
+//   56   } /// конец цикла
+//   57 
+//   58   SET_CS; /// завершим - CS = 1
+        SBI     0x12, 0x07
+//   59 }
+        LDI     R30, 5
+        RJMP    ?EPILOGUE_B5_L09
+        CFI EndBlock cfiBlock5
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        END
+// 
+//  4 bytes in segment ABSOLUTE
+// 94 bytes in segment CODE
+// 
+// 94 bytes of CODE memory
+//  0 bytes of DATA memory (+ 4 bytes shared)
+//
+//Errors: none
+//Warnings: none

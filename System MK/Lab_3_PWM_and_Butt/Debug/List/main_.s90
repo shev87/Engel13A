@@ -1,0 +1,509 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+//                                                     10/Feb/2008  00:02:21 /
+// IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version               /
+// Copyright 1996-2006 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\main_.c    /
+//    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА   /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\main_.c"   /
+//                    --cpu=m8 -ms -o "C:\Documents and                      /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\Obj\ /
+//                    " -lC "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГР /
+//                    АММА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug /
+//                    \List\" -lA "C:\Documents and                          /
+//                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                     /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List /
+//                    \" --initializers_in_flash -z9 --cross_call_passes=3   /
+//                    --debug -DENABLE_BIT_DEFINITIONS --do_cross_call -e    /
+//                    -I "C:\Program Files\IAR Systems\Embedded Workbench    /
+//                    4.0 Evaluation\avr\INC\" -I "C:\Program Files\IAR      /
+//                    Systems\Embedded Workbench 4.0                         /
+//                    Evaluation\avr\INC\CLIB\" --eeprom_size 512            /
+//    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    /
+//                    ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\Debug\List /
+//                    \main_.s90                                             /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME main_
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "2"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        EXTERN ?PROLOGUE2_L09
+
+        PUBWEAK _A_OCR1A
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        PUBLIC main
+        FUNCTION main,021a03H
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_Y Y DATA
+        CFI StackFrame CFA_SP SP DATA
+        CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+        CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+        CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+        CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+        CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+        CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+        CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+        CFI ResourceParts SP SPH, SPL
+        CFI ResourceParts Y R29, R28
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 Undefined
+        CFI R17 Undefined
+        CFI R18 Undefined
+        CFI R19 Undefined
+        CFI R20 Undefined
+        CFI R21 Undefined
+        CFI R22 Undefined
+        CFI R23 Undefined
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 Undefined
+        CFI R31 Undefined
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Notused
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 SameValue
+        CFI R17 SameValue
+        CFI R18 SameValue
+        CFI R19 SameValue
+        CFI R20 SameValue
+        CFI R21 SameValue
+        CFI R22 SameValue
+        CFI R23 SameValue
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 SameValue
+        CFI R31 SameValue
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI Y SameValue
+        CFI EndCommon cfiCommon1
+        
+        EXTERN show_init
+        FUNCTION show_init,0202H
+        EXTERN Timer2_INIT
+        FUNCTION Timer2_INIT,0202H
+        EXTERN Timer2_START
+        FUNCTION Timer2_START,0202H
+        EXTERN InitIndikate
+        FUNCTION InitIndikate,0202H
+        EXTERN Set_INDIK_VAL
+        FUNCTION Set_INDIK_VAL,0202H
+        EXTERN Init_TimerT1
+        FUNCTION Init_TimerT1,0202H
+        EXTERN Timer2_CHECK
+        FUNCTION Timer2_CHECK,0202H
+        EXTERN ChkKbrd
+        FUNCTION ChkKbrd,0202H
+        EXTERN show_result
+        FUNCTION show_result,0202H
+        EXTERN Indikate
+        FUNCTION Indikate,0202H
+        EXTERN GetPrsCode
+        FUNCTION GetPrsCode,0202H
+
+// C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\Lab_3_PWM_and_Butt\main_.c
+//    1 #include "SHow_FUN.h"
+
+        ASEGN ABSOLUTE:DATA:NOROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS 2
+//    2 #include "Timer_2_CNTRL.h"
+//    3 #include "INDIKATE.h"
+//    4 #include "Kbrd.h"
+//    5 #include "timer1.h"
+//    6 
+
+        RSEG CODE:CODE:NOROOT(1)
+//    7 void main( void )
+main:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function main
+//    8 {
+        FUNCALL main, show_init
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Timer2_INIT
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Timer2_START
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, InitIndikate
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Set_INDIK_VAL
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Init_TimerT1
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Timer2_CHECK
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, ChkKbrd
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, show_result
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, Indikate
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        FUNCALL main, GetPrsCode
+        LOCFRAME CSTACK, 2, STACK
+        LOCFRAME RSTACK, 2, STACK
+        RCALL   ?PROLOGUE2_L09
+        CFI R25 Frame(CFA_Y, -1)
+        CFI R24 Frame(CFA_Y, -2)
+        CFI CFA_Y Y+2
+//    9  /// переменная счетчик тиков по 100мкс
+//   10  u_int tick_cntr = 0;
+        LDI     R24, 0
+        LDI     R25, 0
+//   11  u_char ctmp;
+//   12   ///////////////////////////
+//   13   /// Предварительная настройка портов
+//   14   /// работаем с МК 1 к котрому прицеплены ЦАП и ключ силовой
+//   15   /// готовит порт для индикации результата Бит PB0 PORTB
+//   16   show_init();
+        RCALL   show_init
+//   17   /// настройка таймера 2 на генерацию временного интервала
+//   18   /// на опрос кнопок будет достаточно 20мс интервала
+//   19   Timer2_INIT();
+        RCALL   Timer2_INIT
+//   20   Timer2_START();  //// запуск таймера
+        RCALL   Timer2_START
+//   21   /// процедура настройка индикация режим работы
+//   22   InitIndikate();
+        RCALL   InitIndikate
+//   23   /// ф установить режим индикации как будет гореть LED
+//   24   /// для установвки другого режима индикации - один из
+//   25   /// определенных === /// режим индикации светодиода
+//   26   Set_INDIK_VAL(LED_1SHORT);
+        LDI     R16, 1
+        RCALL   Set_INDIK_VAL
+//   27   //// Настройка и управлением таймером 1
+//   28   /// работает в режиме FAST_PWM
+//   29   /// TOP - в регистре ICR  сравнение в OCR1A
+//   30   Init_TimerT1();
+        RCALL   Init_TimerT1
+        RJMP    ??main_0
+//   31 
+//   32   ///////////////////////////
+//   33   /// основной цикл
+//   34   while(1){
+//   35      ////////////////////////////////////////////////////////
+//   36      /// обработка таймера
+//   37      if(Timer2_CHECK()){/// каждые 100мкс
+//   38         tick_cntr++;    /// считаем 100мкс
+//   39 
+//   40         // процедура опроса кнопок вызываем 1 раз в 25 мс
+//   41         if((tick_cntr&0x00FF)== 0){
+//   42            ChkKbrd();
+//   43         }
+//   44 
+//   45         /// функция выводит на ножку значение 10бит
+//   46         /// что бы посмотреть его осциллографом
+//   47         show_result(OCR1A);
+//   48         //////////////////////////////////////////////
+//   49         if(tick_cntr>=1000){     /// каждые 100 мс
+//   50            tick_cntr = 0;        /// переустановим счетчик
+//   51            Indikate( );          /// процедура индикации текущего режима работы
+//   52 
+//   53            ctmp = GetPrsCode();
+//   54            if( ctmp == TWOKEYPRS ){ // нажали обе кнопки
+//   55               OCR1A = 0;/// сброс регистра в 0 - отключим ШИМ
+??main_1:
+        OUT     0x2B, R24
+        OUT     0x2A, R24
+//   56            }else if( ctmp == LEFTSHORT ){ /// короткое нажатие SW1
+??main_0:
+        RCALL   Timer2_CHECK
+        TST     R16
+        BREQ    ??main_0
+        ADIW    R25:R24, 1
+        TST     R24
+        BRNE    ??main_2
+        RCALL   ChkKbrd
+??main_2:
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_0:
+        RCALL   show_result
+        CPI     R24, 232
+        LDI     R16, 3
+        CPC     R25, R16
+        BRCS    ??main_0
+        LDI     R24, 0
+        LDI     R25, 0
+        RCALL   Indikate
+        RCALL   GetPrsCode
+        CPI     R16, 5
+        BREQ    ??main_1
+        CPI     R16, 1
+        BRNE    ??main_3
+//   57               if(OCR1A)
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_1:
+        OR      R16, R17
+        BREQ    ??main_0
+//   58                  OCR1A--;   /// уменьшим ШИМ точно на 1
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_2:
+        SUBI    R16, 1
+??main_4:
+        SBCI    R17, 0
+??main_5:
+        OUT     0x2B, R17
+??main_6:
+        OUT     0x2A, R16
+        RJMP    ??main_0
+//   59            }else if( ctmp == RIGHTSHORT ){ /// короткое нажатие SW2
+??main_3:
+        CPI     R16, 3
+        BRNE    ??main_7
+//   60               if(OCR1A<PWM_TOP_VAL)
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_3:
+        CPI     R16, 255
+        SBCI    R17, 3
+        BRCC    ??main_0
+//   61                  OCR1A++;   /// увеличим ШИМ точно на 1
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_4:
+        SUBI    R16, 255
+??main_8:
+        SBCI    R17, 255
+        RJMP    ??main_5
+//   62            }else if( ctmp == LEFTLONG ){ /// длинное нажатие SW1
+??main_7:
+        CPI     R16, 2
+        BRNE    ??main_9
+//   63               if(OCR1A > 50)
+        IN      R30, 0x2A
+        IN      R31, 0x2B
+        SBIW    R31:R30, 51
+        BRCS    ??main_1
+//   64                  OCR1A -= 50;   /// уменьшим ШИМ точно на 50
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_5:
+        SUBI    R16, 50
+        RJMP    ??main_4
+//   65               else   /// если значение менее 50 ...
+//   66                  OCR1A = 0;
+//   67            }else if( ctmp == RIGHTLONG ){ /// длинное нажатие SW2
+??main_9:
+        CPI     R16, 4
+        BRNE    ??main_0
+//   68               if(OCR1A<(PWM_TOP_VAL-50))
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_6:
+        CPI     R16, 205
+        LDI     R18, 3
+        SBCI    R17, 3
+        BRCC    ??main_10
+//   69                  OCR1A += 50;   /// увеличим ШИМ точно на 1
+        RCALL   ?Subroutine0
+??CrossCallReturnLabel_7:
+        SUBI    R16, 206
+        RJMP    ??main_8
+//   70               else  /// если значение больше чем  PWM_TOP_VAL-50 ...
+//   71                  OCR1A = PWM_TOP_VAL-1;
+??main_10:
+        LDI     R16, 254
+        OUT     0x2B, R18
+        RJMP    ??main_6
+        CFI EndBlock cfiBlock0
+//   72            }
+//   73 
+//   74 
+//   75         }/// конец каждые 100 мс
+//   76         //////////////////////////////////////////////
+//   77      }/// КОНЕЦ обработка таймера каждые 100мкс
+//   78   }
+//   79 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        CFI Block cfiCond1 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI R24 Frame(CFA_Y, -2)
+        CFI R25 Frame(CFA_Y, -1)
+        CFI CFA_SP SP+4
+        CFI CFA_Y Y+2
+        CFI Block cfiCond2 Using cfiCommon0
+        CFI (cfiCond2) NoFunction
+        CFI (cfiCond2) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond2) R24 Frame(CFA_Y, -2)
+        CFI (cfiCond2) R25 Frame(CFA_Y, -1)
+        CFI (cfiCond2) CFA_SP SP+4
+        CFI (cfiCond2) CFA_Y Y+2
+        CFI Block cfiCond3 Using cfiCommon0
+        CFI (cfiCond3) NoFunction
+        CFI (cfiCond3) Conditional ??CrossCallReturnLabel_2
+        CFI (cfiCond3) R24 Frame(CFA_Y, -2)
+        CFI (cfiCond3) R25 Frame(CFA_Y, -1)
+        CFI (cfiCond3) CFA_SP SP+4
+        CFI (cfiCond3) CFA_Y Y+2
+        CFI Block cfiCond4 Using cfiCommon0
+        CFI (cfiCond4) NoFunction
+        CFI (cfiCond4) Conditional ??CrossCallReturnLabel_3
+        CFI (cfiCond4) R24 Frame(CFA_Y, -2)
+        CFI (cfiCond4) R25 Frame(CFA_Y, -1)
+        CFI (cfiCond4) CFA_SP SP+4
+        CFI (cfiCond4) CFA_Y Y+2
+        CFI Block cfiCond5 Using cfiCommon0
+        CFI (cfiCond5) NoFunction
+        CFI (cfiCond5) Conditional ??CrossCallReturnLabel_4
+        CFI (cfiCond5) R24 Frame(CFA_Y, -2)
+        CFI (cfiCond5) R25 Frame(CFA_Y, -1)
+        CFI (cfiCond5) CFA_SP SP+4
+        CFI (cfiCond5) CFA_Y Y+2
+        CFI Block cfiCond6 Using cfiCommon0
+        CFI (cfiCond6) NoFunction
+        CFI (cfiCond6) Conditional ??CrossCallReturnLabel_5
+        CFI (cfiCond6) R24 Frame(CFA_Y, -2)
+        CFI (cfiCond6) R25 Frame(CFA_Y, -1)
+        CFI (cfiCond6) CFA_SP SP+4
+        CFI (cfiCond6) CFA_Y Y+2
+        CFI Block cfiCond7 Using cfiCommon0
+        CFI (cfiCond7) NoFunction
+        CFI (cfiCond7) Conditional ??CrossCallReturnLabel_6
+        CFI (cfiCond7) R24 Frame(CFA_Y, -2)
+        CFI (cfiCond7) R25 Frame(CFA_Y, -1)
+        CFI (cfiCond7) CFA_SP SP+4
+        CFI (cfiCond7) CFA_Y Y+2
+        CFI Block cfiCond8 Using cfiCommon0
+        CFI (cfiCond8) NoFunction
+        CFI (cfiCond8) Conditional ??CrossCallReturnLabel_7
+        CFI (cfiCond8) R24 Frame(CFA_Y, -2)
+        CFI (cfiCond8) R25 Frame(CFA_Y, -1)
+        CFI (cfiCond8) CFA_SP SP+4
+        CFI (cfiCond8) CFA_Y Y+2
+        CFI Block cfiPicker9 Using cfiCommon1
+        CFI (cfiPicker9) NoFunction
+        CFI (cfiPicker9) Picker
+        IN      R16, 0x2A
+        IN      R17, 0x2B
+        RET
+        CFI EndBlock cfiCond1
+        CFI EndBlock cfiCond2
+        CFI EndBlock cfiCond3
+        CFI EndBlock cfiCond4
+        CFI EndBlock cfiCond5
+        CFI EndBlock cfiCond6
+        CFI EndBlock cfiCond7
+        CFI EndBlock cfiCond8
+        CFI EndBlock cfiPicker9
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        END
+//   80 
+//   81 
+// 
+//   2 bytes in segment ABSOLUTE
+// 156 bytes in segment CODE
+// 
+// 156 bytes of CODE memory
+//   0 bytes of DATA memory (+ 2 bytes shared)
+//
+//Errors: none
+//Warnings: none

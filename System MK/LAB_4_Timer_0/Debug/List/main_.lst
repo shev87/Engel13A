@@ -1,0 +1,205 @@
+##############################################################################
+#                                                                            #
+#                                                      29/Feb/2008  23:49:02 #
+# IAR Atmel AVR C/C++ Compiler V4.20A/W32, Evaluation Version                #
+# Copyright 1996-2006 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Source file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\LAB_4_Timer_0\main_.c          #
+#    Command line =  "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА    #
+#                    ИНСТИТУТ\LABORATOR_WORKS\LAB_4_Timer_0\main_.c"         #
+#                    --cpu=m8 -ms -o "C:\Documents and                       #
+#                    Settings\Serg\SERG_DOCUM\_ПРГРАММА                      #
+#                    ИНСТИТУТ\LABORATOR_WORKS\LAB_4_Timer_0\Debug\Obj\"      #
+#                    -lCN "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАМ #
+#                    МА ИНСТИТУТ\LABORATOR_WORKS\LAB_4_Timer_0\Debug\List\"  #
+#                    -lA "C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММ #
+#                    А ИНСТИТУТ\LABORATOR_WORKS\LAB_4_Timer_0\Debug\List\"   #
+#                    --initializers_in_flash -z9 --cross_call_passes=3       #
+#                    --debug -DENABLE_BIT_DEFINITIONS --do_cross_call -e -I  #
+#                    "C:\Program Files\IAR Systems\Embedded Workbench 4.0    #
+#                    Evaluation\avr\INC\" -I "C:\Program Files\IAR           #
+#                    Systems\Embedded Workbench 4.0                          #
+#                    Evaluation\avr\INC\CLIB\" --eeprom_size 512             #
+#    List file    =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\LAB_4_Timer_0\Debug\List\main_ #
+#                    .lst                                                    #
+#    Object file  =  C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА     #
+#                    ИНСТИТУТ\LABORATOR_WORKS\LAB_4_Timer_0\Debug\Obj\main_. #
+#                    r90                                                     #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Documents and Settings\Serg\SERG_DOCUM\_ПРГРАММА ИНСТИТУТ\LABORATOR_WORKS\LAB_4_Timer_0\main_.c
+      1          #include "Header.h"
+
+   \                                 In segment ABSOLUTE, at 0x31
+   \   union <unnamed> volatile __io _A_DDRD
+   \                     _A_DDRD:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x32
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x35
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x38
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x53
+   \   union <unnamed> volatile __io _A_TCCR0
+   \                     _A_TCCR0:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x58
+   \   union <unnamed> volatile __io _A_TIFR
+   \                     _A_TIFR:
+   \   00000000                      DS 1
+
+   \                                 In segment ABSOLUTE, at 0x59
+   \   union <unnamed> volatile __io _A_TIMSK
+   \                     _A_TIMSK:
+   \   00000000                      DS 1
+      2          
+      3          /// Можно определить маску для работы с нужными битами
+      4          #define DIG_OUT_MASK  ((1<<PD5)|(1<<PD6)|(1<<PD7))
+      5          
+      6          
+      7          // Процедура настройки таймера 0
+
+   \                                 In segment CODE, align 2, keep-with-next
+      8          void init_Timer_0(void)
+   \                     init_Timer_0:
+      9          {
+     10            TCCR0 = (1<<CS02)|(1<<CS00);  // Timer Clock = system clock / 1024
+   \   00000000   E005               LDI     R16, 5
+   \   00000002   BF03               OUT     0x33, R16
+     11          // сбросим флаг переполнения если установлен
+     12            TIFR  = 1<<TOV0;		// Clear TOV0 / Clear pending interrupts
+   \   00000004   E001               LDI     R16, 1
+   \   00000006   BF08               OUT     0x38, R16
+     13          // разрешаем прерывания от события переполнение таймера 0
+     14            TIMSK = 1<<TOIE0;             // Enable Timer 0 Overflow Interrupt
+   \   00000008   BF09               OUT     0x39, R16
+     15          }
+   \   0000000A   9508               RET
+     16          
+     17          
+     18          // процедура прерывания
+     19          /// формирует меандр на PD5 и PD7 период = 2*system_clock/1024/356
+     20          #pragma vector=TIMER0_OVF_vect
+
+   \                                 In segment CODE, align 2, keep-with-next
+     21          __interrupt void Timer_0_ovfEVENT(void)
+   \                     Timer_0_ovfEVENT:
+     22          {
+   \   00000000   932A               ST      -Y, R18
+   \   00000002   931A               ST      -Y, R17
+   \   00000004   930A               ST      -Y, R16
+   \   00000006   B72F               IN      R18, 0x3F
+     23            PORTD ^= ((1<<PD5)|(1<<PD7));
+   \   00000008   EA00               LDI     R16, 160
+   \   0000000A   B312               IN      R17, 0x12
+   \   0000000C   2710               EOR     R17, R16
+   \   0000000E   BB12               OUT     0x12, R17
+     24          }
+   \   00000010   BF2F               OUT     0x3F, R18
+   \   00000012   9109               LD      R16, Y+
+   \   00000014   9119               LD      R17, Y+
+   \   00000016   9129               LD      R18, Y+
+   \   00000018   9518               RETI
+     25          
+
+   \                                 In segment CODE, align 2, keep-with-next
+     26          void main( void )
+   \                     main:
+     27          {
+     28            /// включим подтяжку на всех выводах МК
+     29             PORTB = 0xFF;
+   \   00000000   EF0F               LDI     R16, 255
+   \   00000002   BB08               OUT     0x18, R16
+     30             PORTC = 0xFF;
+   \   00000004   BB05               OUT     0x15, R16
+     31             PORTD = 0xFF;
+   \   00000006   BB02               OUT     0x12, R16
+     32          
+     33            /// определим направление - ВЫХОД
+     34            DDRD |= DIG_OUT_MASK;
+   \   00000008   B301               IN      R16, 0x11
+   \   0000000A   6E00               ORI     R16, 0xE0
+   \   0000000C   BB01               OUT     0x11, R16
+     35            /// предустановка бит порта - теперь они работают как источник 20мА
+     36            /// напряжение 5В
+     37            PORTD |= DIG_OUT_MASK;
+   \   0000000E   B302               IN      R16, 0x12
+   \   00000010   6E00               ORI     R16, 0xE0
+   \   00000012   BB02               OUT     0x12, R16
+     38          
+     39            // Процедура настройки таймера 0
+     40            init_Timer_0();
+   \   00000014   ....               RCALL   init_Timer_0
+     41          
+     42            /// разрешаем прерывания
+     43            _SEI();
+   \   00000016   9478               SEI
+     44          
+     45            ///////////////////////////
+     46            /// основной цикл
+     47            while(1){
+     48              /// встроленная функция эквиваелент команды nop
+     49              /// ничего не делаем
+     50              _NOP();
+   \                     ??main_0:
+   \   00000018   0000               NOP
+   \   0000001A   CFFE               RJMP    ??main_0
+     51            }
+     52          }
+
+   \                                 In segment INTVEC, offset 0x12, root
+   \                     `??Timer_0_ovfEVENT??INTVEC 18`:
+   \   00000012   ....               RJMP    Timer_0_ovfEVENT
+
+   Maximum stack usage in bytes:
+
+     Function          CSTACK RSTACK
+     --------          ------ ------
+     Timer_0_ovfEVENT      3      2
+     init_Timer_0          0      2
+     main                  0      2
+       -> init_Timer_0     0      2
+
+
+   Segment part sizes:
+
+     Function/Label                Bytes
+     --------------                -----
+     _A_DDRD                          1
+     _A_PORTD                         1
+     _A_PORTC                         1
+     _A_PORTB                         1
+     _A_TCCR0                         1
+     _A_TIFR                          1
+     _A_TIMSK                         1
+     init_Timer_0                    12
+     Timer_0_ovfEVENT                26
+     main                            28
+     ??Timer_0_ovfEVENT??INTVEC 18    2
+
+ 
+  7 bytes in segment ABSOLUTE
+ 66 bytes in segment CODE
+  2 bytes in segment INTVEC
+ 
+ 66 bytes of CODE memory (+ 2 bytes shared)
+  0 bytes of DATA memory (+ 7 bytes shared)
+
+Errors: none
+Warnings: none

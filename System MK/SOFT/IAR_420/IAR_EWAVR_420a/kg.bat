@@ -1,0 +1,1 @@
+iarkg.exe 0x22232 > Keys.txt

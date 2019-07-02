@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0031)http://www.lancos.com/prog.html -->
+<HTML><HEAD><TITLE>PonyProg - Serial device programmer</TITLE>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type>
+<META 
+content="PonyProg: a powerful but simple serial device programmer with  a GUI framework for Linux and Windows." 
+name=description>
+<META 
+content="claudio, lanconelli,  ponyprog, ponyprogrammer, PonyProg, serial, device, programmer,  lancos, open source,  linux, windows, eeprom, e2prom, microcontroller, memory, I2C Bus, microwire,  SPI, PIC16F84, PIC, AVR, AT90S1200, AT90S2313, AT90S4414, AT90S8515, ATmega, 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 93C06, 93C46, 93C86, SDE2506, NVM3060, RS232" 
+name=keywords>
+<SCRIPT language=JavaScript>
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</SCRIPT>
+<!-- Author :    Claudio Lanconelli -->
+<META content="MSHTML 5.00.2920.0" name=GENERATOR></HEAD>
+<BODY aLink=#00ff00 bgColor=#ffffff leftMargin=0 link=#ff00ff 
+onload="MM_preloadImages('../img/small-button-down.gif')" topMargin=0 
+vLink=#ff0000>
+<DIV align=left>
+<TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+  <TBODY>
+  <TR>
+    <TD align=right 
+    background="PonyProg - Serial device programmer.files/corner3.gif" 
+    bgColor=#ffffff height=160 vAlign=top width=200><IMG height=5 
+      src="PonyProg - Serial device programmer.files/tbar.gif" width=200><IMG 
+      alt="mail to me" border=0 height=51 
+      src="PonyProg - Serial device programmer.files/mymail.gif" width=121> 
+    <BR></TD>
+    <TD bgColor=#ffffff>
+      <P align=center><B><FONT color=#000080 
+      face="Arial, Helvetica, sans-serif"><FONT size=6>PonyProg</FONT><BR><FONT 
+      size=4><I>serial device programmer</I></FONT></FONT></B></P>
+      <P align=center><A 
+      href="http://ponyprog1.sourceforge.net/phorum/list.php?f=1">Online 
+      Forum</A> </P></TD></TR>
+  <TR>
+    <TD align=middle 
+    background="PonyProg - Serial device programmer.files/Sfondo2.gif" 
+    bgColor=#ffffff vAlign=top width=200>
+      <P align=left>&nbsp;</P><!-- #BeginLibraryItem "/Library/MainIndex.lbi" -->
+      <P align=left>&nbsp;&nbsp;<A href="http://www.lancos.com/index.html" 
+      onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image55','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image55 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/index.html">Home</A><BR>&nbsp;&nbsp;<A 
+      href="http://www.lancos.com/whoami.html" onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image56','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image56 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A href="http://www.lancos.com/whoami.html">Who am 
+      I?</A><BR>&nbsp;&nbsp;<A href="http://www.lancos.com/projects.html" 
+      onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image57','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image57 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/projects.html">Projects</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.lancos.com/prog.html" onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image68','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image68 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/prog.html">PonyProg</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://caraca.sourceforge.net/" onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image58','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image58 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://caraca.sourceforge.net/">CARACA</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.lancos.com/webtherm.html" onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image59','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image59 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/webtherm.html">WebTherm</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.lancos.com/mthreads.asm.html" 
+      onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image60','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image60 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/mthreads.asm.html">MiniThreads</A></P><!-- #EndLibraryItem --><!-- #BeginLibraryItem "/Library/ProgIndex.lbi" -->
+      <SCRIPT language=JavaScript>
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</SCRIPT>
+
+      <HR>
+
+      <DIV align=left>
+      <P>&nbsp;&nbsp;<A href="http://www.lancos.com/prog.html" 
+      onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image69','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image69 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/prog.html">PonyProg</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.lancos.com/prog.html#intro" 
+      onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image54','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image54 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/prog.html#intro">Introduction</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.lancos.com/prog.html#features" 
+      onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image61','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image61 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/prog.html#features">Features</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.lancos.com/prog.html#dump" onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image62','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image62 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A href="http://www.lancos.com/prog.html#dump">Screen 
+      shot</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.lancos.com/ppwin95.html" onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image63','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image63 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/ppwin95.html">Download</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.lancos.com/prog.html#hardware" 
+      onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image65','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image65 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://www.lancos.com/prog.html#hardware">HW&nbsp;Interface</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://www.artek.it/siprog/siprog.htm" 
+      onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image66','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image66 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A href="http://www.artek.it/siprog/siprog.htm">Buy SI 
+      Prog</A><A 
+      href="http://ponyprog1.sourceforge.net/phorum"><BR></A>&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      href="http://ponyprog1.sourceforge.net/phorum/list.php?f=1" 
+      onmouseout=MM_swapImgRestore() 
+      onmouseover="MM_swapImage('Image671','','img/small-button-down.gif',1)"><IMG 
+      align=absMiddle border=0 height=30 name=Image671 
+      src="PonyProg - Serial device programmer.files/small-button-up.gif" 
+      width=30></A> <A 
+      href="http://ponyprog1.sourceforge.net/phorum/list.php?f=1">Forum</A><BR></P></DIV><!-- #EndLibraryItem -->
+      <DIV align=left></DIV>
+      <P>&nbsp;</P>
+      <BLOCKQUOTE>
+        <P><FONT color=#ffffff><SMALL>Last update<BR>$Date: 2002/02/25 00:01:25 
+        $</SMALL></FONT></P>
+        <P><!-- Inizio Codice Shinystat -->
+        <SCRIPT language=JavaScript 
+        src="PonyProg - Serial device programmer.files/getcod.htm" 
+        type=text/javascript></SCRIPT>
+        <NOSCRIPT><A 
+        href="http://www.shinystat.it/cgi-bin/shinystatv.cgi?USER=ponyprog" 
+        target=_top><IMG border=0 
+        src="PonyProg - Serial device programmer.files/shinystat.cgi"></A> 
+        </NOSCRIPT><!-- Fine Codice Shinystat --></P>
+        <P><A href="http://sourceforge.net/"><IMG alt="SourceForge Logo" 
+        border=0 height=31 
+        src="PonyProg - Serial device programmer.files/sflogo.png" width=88></A> 
+        </P>
+        <P><A href="http://www.suonerie.cc/"><IMG alt="suonerie cellulari" 
+        border=0 height=86 
+        src="PonyProg - Serial device programmer.files/suonerie-2.gif" 
+        width=94></A> <!--<a href='http://www.suonerie.cc/'><img src='http://www.suonerie.cc/banner/suonerie02_small.gif' alt='suonerie cellulari' width='200' height='60'></a> --></P></BLOCKQUOTE></TD>
+    <TD align=middle bgColor=#ffffff vAlign=top>
+      <DL>
+        <TABLE border=0 cellPadding=0 cellSpacing=0 width="98%">
+          <TBODY>
+          <TR>
+            <TD bgColor=#bee0fa><STRONG><FONT 
+              color=#000080><BIG>&nbsp;</BIG><A name=intro></A>&nbsp;<BIG><FONT 
+              face="Arial, Helvetica, sans-serif">Introduction</FONT></BIG></FONT></STRONG></TD></TR>
+          <TR>
+            <TD>&nbsp;&nbsp;&nbsp; </TD></TR>
+          <TR>
+            <TD><FONT face=Arial><IMG align=left height=180 
+              src="PonyProg - Serial device programmer.files/PonyProg2000.gif" 
+              width=161>I</FONT>f you are looking for a simple but 
+              <STRONG>powerful programmer</STRONG> you are right, it's 
+              here.<BR><STRONG>PonyProg</STRONG> is a serial device programmer 
+              <EM>software</EM> with a user friendly GUI framework available for 
+              Windows95, 98, 2000 &amp; NT and Intel Linux. Its purpose is 
+              reading and writing every serial device. At the moment it supports 
+              I²C Bus, Microwire, SPI eeprom, the Atmel <A 
+              href="http://www.atmel.com/products/prod23.htm">AVR</A> and 
+              Microchip <A href="http://www.microchip.com/">PIC</A> 
+              micro.<BR><STRONG>SI-Prog</STRONG> is the programmer 
+              <EM>hardware</EM> interface for PonyProg.<BR>With PonyProg and 
+              SI-Prog you can program Wafercard for SAT, eeprom within GSM, TV 
+              or CAR-RADIO. Furthermore it can be used as a low cost starter kit 
+              for PIC and AVR. 
+              <P><STRONG><BIG><FONT color=#a64b35>Buy SI-Prog NOW!!!</FONT> <A 
+              href="http://www.artek.it/siprog/siprog.htm">Look at SI-Prog page 
+              for price and delivery details</A></BIG></STRONG></P>
+              <P>PonyProg works also with other simple hardware interfaces like 
+              <A href="http://www.lancos.com/prog.html#avrisp">AVR ISP</A> 
+              (STK200/300), <A 
+              href="http://www.lancos.com/prog.html#ludipipo">JDM/Ludipipo</A>, 
+              <A href="http://www.lancos.com/prog.html#easyi2c">EasyI2C</A> and 
+              DT-006 AVR (by Dontronics).</P>
+              <P>&nbsp;</P></TD></TR>
+          <TR>
+            <TD bgColor=#bee0fa><STRONG><FONT 
+              color=#000080><BIG>&nbsp;</BIG><A name=features></A><BIG><FONT 
+              face="Arial, Helvetica, sans-serif">&nbsp;Features</FONT></BIG></FONT></STRONG></TD></TR>
+          <TR>
+            <TD><STRONG><FONT color=#000080><BIG>&nbsp;&nbsp;&nbsp; 
+              </BIG></FONT></STRONG></TD></TR>
+          <TR>
+            <TD>
+              <TABLE border=0 width="100%">
+                <TBODY>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support 24C01, 24C02, 
+                    24C04, 24C08, 24C16 I²C Bus EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support 24C32, 24C64, 
+                    24C65, 24C128, 24C256, 24C512 I²C Bus EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Auto detect 24XX EEPROM 
+                    capacity</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support 24C325 and 24C645 
+                    I²C Bus EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support Siemens SDE2516, 
+                    SDE2526, SDA2546, SDA2586,&nbsp;SDA3546, SDA3586&nbsp;&nbsp; 
+                    EEPROM (as 24XX Auto)</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support AT17C65, AT17C128, 
+                    AT17C256, AT17C512, AT17C010 I²C Bus EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support Siemens SDE2506 
+                    EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Detect the bank roll over 
+                    capability of some old 24XX EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support AT90S1200, 
+                    AT90S2313, AT90S2323, AT90S2343, AT90S4414, AT90S4434, 
+                    AT90S8515, AT90S8535 Flash micro</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support AT90S2323, 
+                    AT90S2343, AT90S2333, AT90S4433, AT90S4434, AT90S8535, 
+                    AT90S8534</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Auto detect AVR 
+                    microcontroller type</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support the AVR 
+                    microcontroller ATmega103, ATmega161, ATmega163, ATmega 323, 
+                    ATmega128, ATmega8</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=31 
+                    src="PonyProg - Serial device programmer.files/aninew.gif" 
+                    width=31></TD>
+                  <TD width="95%"><FONT face=Arial>Support the AVR 
+                    microcontroller ATmega16, ATmega64 
+                  (<I>untested</I>)</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support the AVR ATtiny 
+                    microcontroller ATtiny12, ATtiny15</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Read ATtiny12 and ATtiny15 
+                    Oscillator Calibration Byte </FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Write lock bits to protect 
+                    the AVR micro from reading</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Write both the Flash and 
+                    EEPROM memory of the AVR micro at once</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support the AT89S8252 and 
+                    AT89S53 micro</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support 93C06, 93C46, 
+                    93C56, 93C57, 93C66, 93C76, 93C86 Microwire EEPROM (C and LC 
+                    series, the CS serie is not supported yet)</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support 93C13 (as a 93C06) 
+                    and 93C14 (as a 93C46) Microwire EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Access microwire eeproms in 
+                    either 8 and 16 bit organization</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Improved support PIC 
+                    16C84/16F84 micro</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support PIC 
+                    16F873/874/876/877 and PIC 16F84A micro</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support PIC 12C508/509 
+                    micro</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support PIC 12C671/672 
+                    micro (<I>untested</I>)</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support 25010, 25020, 25040 
+                    SPI EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support 25080, 25160, 
+                    25320, 25640, 25128, 25256 Big SPI EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support 25642 and 95640 Big 
+                    SPI EEPROM</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support NVM3060 
+                    eeprom</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support MDA2061/MDA2062 
+                    eeprom</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support X2444/X2445 
+                    eeprom</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Support S24H30 
+                    (<I>untested</I>)</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Read/Write Intel hex format 
+                    file as well as raw binary file</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Read/Write Motorola 
+                    S-record format file</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Read/Write CSM format 
+                    file</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Features a custom E²P 
+                    format file to store the EEPROM characteristics, an editable 
+                    comment and memory content all together with 
+CRC</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Enhanced buffer edit, text 
+                    and hexadecimal</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Work with Windows95, 
+                    Windows98, WindowsME, Windows2000, WindowsNT and 
+                    Linux*</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Reload file 
+                button</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Fill buffer 
+                  command</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Security bits editing for 
+                    AVR, AT89S and PIC</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Serial number 
+                    programming</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Script files for batch 
+                    programming</FONT></TD></TR>
+                <TR>
+                  <TD width="5%"><IMG height=16 
+                    src="PonyProg - Serial device programmer.files/palla.gif" 
+                    width=16></TD>
+                  <TD width="95%"><FONT face=Arial>Improved speed with WinNT 
+                    and Win2000 with a driver for direct 
+                I/O.</FONT></TD></TR></TBODY></TABLE></TD></TR>
+          <TR>
+            <TD>
+              <P>*Not all interfaces are supported in every operating system, 
+              for more informations look at the documentation. </P>
+              <P>New untested devices may not work. I'm waiting for the samples 
+              to test them.</P>
+              <P>&nbsp;</P></TD></TR>
+          <TR>
+            <TD>&nbsp;&nbsp;&nbsp; </TD></TR>
+          <TR>
+            <TD bgColor=#bee0fa><STRONG><FONT 
+              color=#000080><BIG>&nbsp;</BIG><A name=dump></A><BIG><FONT 
+              face="Arial, Helvetica, sans-serif">&nbsp;Screen 
+              dump</FONT></BIG></FONT></STRONG></TD></TR>
+          <TR>
+            <TD>&nbsp;&nbsp;&nbsp; </TD></TR>
+          <TR>
+            <TD><IMG height=414 
+              src="PonyProg - Serial device programmer.files/ponydump.png" 
+              width=659> 
+              <P> </P></TD></TR>
+          <TR>
+            <TD bgColor=#bee0fa><STRONG><FONT 
+              color=#000080><BIG>&nbsp;</BIG><A name=download></A><BIG><FONT 
+              face="Arial, Helvetica, sans-serif">&nbsp;Download 
+              page</FONT></BIG></FONT></STRONG></TD></TR>
+          <TR>
+            <TD>&nbsp;</TD></TR>
+          <TR>
+            <TD>
+              <P><A href="http://www.lancos.com/ppwin95.html"><BIG>Download 
+              PonyProg for Windows95/98/ME/NT/2000 &amp; Linux</BIG></A> 
+              <P> </P></TD></TR>
+          <TR>
+            <TD bgColor=#bee0fa><A name=todo></A><STRONG><FONT color=#000080 
+              face="Arial, Helvetica, sans-serif"><BIG>&nbsp;TODO</BIG></FONT></STRONG></TD></TR>
+          <TR>
+            <TD>&nbsp; 
+              <UL>
+                <LI>Setup window to change .INI parameters 
+                <LI>Add color to highlight differences after a verify 
+                <LI>Custom hardware interface dialog 
+                <LI>Add new microwire devices 
+                <LI>Add SX Parallax micro 
+                <LI>... any suggestions are welcome </LI></UL>
+              <P><BR>I need your help to translate PonyProg in your 
+              language.<BR>If your language is not listed below download the 
+              english file, translate it and send me back by e-mail.<BR>If your 
+              language is already listed below I need your help to keep it 
+              updated, so open it with your editor and look for string 
+              "TRANSLATE" in the file, translate the string and send me back by 
+              e-mail. File with Status OK don't need any translation.</P>
+              <BLOCKQUOTE>
+                <P><B>String Table</B></P>
+                <TABLE border=1 cellPadding=2 cellSpacing=2 width="75%">
+                  <TBODY>
+                  <TR>
+                    <TD>
+                      <DIV align=center><B>Language</B></DIV></TD>
+                    <TD>
+                      <DIV align=center><B>Status</B></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_english.h">English</A></DIV></TD>
+                    <TD>
+                      <DIV align=center>OK</DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_italiano.h">Italiano</A></DIV></TD>
+                    <TD>
+                      <DIV align=center>OK</DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_slovenski.h">Slovenski</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_deutsch.h">Deutsch</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_hrvatski.h">Hrvatski</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_nederlands.h">Nederlands</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_francais.h">Francais</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_spanish.h">Spanish</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_portuguese.h">Portuguese</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_russian.h">Russian</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_slovak.h">Slovak</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_bulgarian.h">Bulgarian</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_brazilian.h">Brazilian</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_srpski.h">Srpski</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_ukrainian.h">Ukrainian</A></DIV></TD>
+                    <TD>&nbsp;</TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_chinese.h">Chinese</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_hungarian.h">Hungarian</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_romaneste.h">Romaneste</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_polish.h">Polish</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR>
+                  <TR>
+                    <TD>
+                      <DIV align=center><A 
+                      href="http://www.lancos.com/e2p/string_table_swedish.h">Swedish</A></DIV></TD>
+                    <TD>
+                      <DIV align=center></DIV></TD></TR></TBODY></TABLE>
+                <P>&nbsp;</P>
+                <P><B>Help File</B></P>
+                <BLOCKQUOTE>
+                  <P><A 
+                  href="http://www.lancos.com/e2p/ponyprog2000.html">English</A></P></BLOCKQUOTE></BLOCKQUOTE>
+              <P><B>NB </B>At the moment there's a problem with language that 
+              use a code page different from 8859-1 "latin". I'm looking for a 
+              way to fix it.</P>
+              <P>&nbsp;</P></TD></TR>
+          <TR>
+            <TD>&nbsp;</TD></TR>
+          <TR>
+            <TD bgColor=#bee0fa><STRONG><FONT 
+              color=#000080><BIG>&nbsp;</BIG><A name=hardware></A><BIG><FONT 
+              face="Arial, Helvetica, sans-serif">&nbsp;Hardware 
+              interfaces</FONT></BIG></FONT></STRONG></TD></TR>
+          <TR>
+            <TD>&nbsp;</TD></TR>
+          <TR>
+            <TD>PonyProg now works with several hardware interfaces. Choose 
+              the one you prefer and try it. 
+              <P>&nbsp;</P>
+              <P><A name=si-prog></A><FONT face=Arial size=4><B>SI Prog (Serial 
+              port Interface for PonyProg)</B></FONT></P>
+              <P>The official PonyProg hardware interface. It works with all 
+              devices supported by PonyProg. Look <A 
+              href="http://www.artek.it/siprog/siprog.htm">here</A> to buy 
+              it.</P>
+              <P><A href="http://www.lancos.com/siprogsch.html">SI Prog 
+              schematics</A><BR><A href="http://www.lancos.com/ponykit.html">SI 
+              Prog kit</A></P>
+              <HR>
+
+              <P><A name=avrisp></A><FONT face=Arial size=4><B>AVR ISP 
+              (STK200/300) parallel port interface</B></FONT></P>
+              <P>The best way to perform AVR ISP programming. It works even in 
+              low voltage systems (3V). To select it choose "AVR ISP I/O" or 
+              "AVR ISP API" from the Options - Setup menu and the parallel 
+              checkbox.<BR>You can connect directly to the target system (ISP) 
+              through the 10 pin connector, alternatively you can connect a 
+              PonyProg adapter card for AVR, AT89S, SPI eeproms, microwire 
+              eeproms and feed external power to the device.<BR>"AVR ISP API" on 
+              Linux version need the parport, parport_pc and ppdev kernel 
+              modules.<BR>On WindowsNT/2000 you have to select "AVR ISP 
+              I/O".<BR>Note that this interface doesn't support I<FONT 
+              face=Arial size=4><B>²</B></FONT>CBus devices, use the SI-Prog or 
+              EasyI2CBus interface instead.</P>
+              <P>The STK200/300 official dongle is provided by Kanda.<BR></P>
+              <P>AVR ISP with STK200/300 pinout (connect it to STK200/300 eva 
+              board)<BR><A 
+              href="http://www.lancos.com/e2p/avrisp-stk200.gif"><IMG border=0 
+              height=226 
+              src="PonyProg - Serial device programmer.files/avrisp-stk200_mini.gif" 
+              width=345></A> <A 
+              href="http://www.lancos.com/e2p/avrisp-stk200.gif">Click here to 
+              enlarge</A></P>
+              <P> </P>
+              <P>AVR ISP with SI-Prog pinout (connect it to <A 
+              href="http://www.lancos.com/siprogsch.html">SI-Prog</A> adapter 
+              boards) <BR><A 
+              href="http://www.lancos.com/e2p/avrisp-siprog.gif"><IMG border=0 
+              height=189 
+              src="PonyProg - Serial device programmer.files/avrisp-siprog_mini.gif" 
+              width=294></A> <A 
+              href="http://www.lancos.com/e2p/avrisp-siprog.gif">Click here to 
+              enlarge</A></P>
+              <HR>
+
+              <P><A name=ludipipo></A><FONT face=Arial size=4><B>Ludipipo and 
+              JDM interface</B></FONT></P>
+              <P>PonyProg support ludipipo and JDM interface to program 
+              PIC16x84. To select it choose "JDM I/O" from the Options - Setup 
+              menu and the serial checkbox. If you use Linux or experiment 
+              problems select "JDM API".</P>
+              <P><BIG><A href="http://www.lancos.com/e2p/Jdm-v22.gif">JDM 
+              schematics</A></BIG><FONT face=Arial><BR><BR>How to connect 24Cxx 
+              eeproms to JDM programmer:<BR><IMG height=125 
+              src="PonyProg - Serial device programmer.files/eeprdrw2.gif" 
+              width=205> </FONT></P>
+              <HR>
+
+              <P><A name=easyi2c></A><FONT face=Arial size=4><B>Easy I²C Bus 
+              interface</B></FONT></P>
+              <P>To select it choose "Easy I2CBus" from the Options - Setup menu 
+              and the parallel checkbox.<BR>"AVR ISP API" on Linux version need 
+              the parport, parport_pc and ppdev kernel modules.<BR>On 
+              WindowsNT/2000 you have to select "AVR ISP I/O"</P>
+              <P><A href="http://www.lancos.com/e2p/easyI2Cbus.gif"><BIG><IMG 
+              border=0 height=211 
+              src="PonyProg - Serial device programmer.files/easyI2Cbus_mini.gif" 
+              width=320>Click here to enlarge</BIG></A><BR></P></TD></TR>
+          <TR>
+            <TD 
+width=610></TD></TR></TBODY></TABLE></DL></TD></TR></TBODY></TABLE></DIV></BODY></HTML>
